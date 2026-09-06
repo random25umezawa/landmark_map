@@ -28,6 +28,7 @@ map.on("load", async () => {
 
 function addLayer(def, data) {
   def.featureCount = data.features.length;
+  def.attribution = data.attribution || null;
   map.addSource(def.id, { type: "geojson", data });
   map.addLayer({
     id: def.id,
@@ -81,4 +82,16 @@ function buildPanel() {
     li.append(checkbox, swatch, label, count);
     list.appendChild(li);
   });
+
+  buildAttributionFooter();
+}
+
+function buildAttributionFooter() {
+  const sources = LAYER_DEFS.filter((d) => d.attribution);
+  if (sources.length === 0) return;
+
+  const footer = document.createElement("div");
+  footer.id = "attribution-footer";
+  footer.innerHTML = sources.map((d) => `<div>${d.attribution}</div>`).join("");
+  document.getElementById("panel").appendChild(footer);
 }
