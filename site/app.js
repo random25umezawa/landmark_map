@@ -37,8 +37,9 @@ function addLayer(def, data) {
     paint: {
       "circle-radius": 5,
       "circle-color": def.color,
-      "circle-stroke-width": 1,
-      "circle-stroke-color": "#fff",
+      // 手動で住所・座標を補完した地点は金色の縁取りで区別する
+      "circle-stroke-width": ["case", ["==", ["get", "geocode_source"], "manual"], 2.5, 1],
+      "circle-stroke-color": ["case", ["==", ["get", "geocode_source"], "manual"], "#ffd600", "#fff"],
     },
   });
 
@@ -83,7 +84,16 @@ function buildPanel() {
     list.appendChild(li);
   });
 
+  buildLegendNote();
   buildAttributionFooter();
+}
+
+function buildLegendNote() {
+  const note = document.createElement("div");
+  note.id = "legend-note";
+  note.innerHTML =
+    '<span class="swatch-ring"></span>金色の縁取り: 住所が自動取得できず手動で位置を補完した地点';
+  document.getElementById("panel").appendChild(note);
 }
 
 function buildAttributionFooter() {

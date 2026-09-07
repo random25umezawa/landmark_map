@@ -56,6 +56,28 @@ html, body {
   font-size: 13px;
 }
 
+#legend-note {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 11px;
+  line-height: 1.4;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#legend-note .swatch-ring {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #999;
+  border: 2.5px solid #ffd600;
+  box-sizing: content-box;
+}
+
 #attribution-footer {
   margin-top: 8px;
   padding-top: 8px;

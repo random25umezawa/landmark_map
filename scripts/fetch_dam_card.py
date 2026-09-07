@@ -17,10 +17,12 @@ import requests
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from geocode import geocode
+from geocode import load_overrides, resolve
 
 LIST_PAGE_URL = "https://www.mlit.go.jp/river/kankyo/campaign/shunnkan/damcard.html"
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "data" / "dam-card.geojson"
+UNRESOLVED_PATH = Path(__file__).resolve().parent.parent / "data" / "dam-card-unresolved.json"
+OVERRIDES_PATH = Path(__file__).resolve().parent / "manual_overrides" / "dam_card.json"
 CIRCLED_DIGITS = "①②③④⑤⑥⑦⑧⑨⑩"
 MARKER_RE = re.compile(f"[{CIRCLED_DIGITS}]")
 PREF_NAMES = [
@@ -55,6 +57,20 @@ def split_by_marker(text: str | None) -> dict[str | None, str]:
     return {m: c.strip() for m, c in zip(markers, chunks) if c.strip()}
 
 
+def clean_pref(pref_raw: str, marker: str | None) -> str:
+    """ダム所在県名を整形する。①②...で複数県が併記されている行は該当マーカーの県名のみを返す。"""
+    marker_map = split_by_marker(pref_raw)
+    if marker and marker in marker_map:
+        return marker_map[marker].strip()
+    if list(marker_map.keys()) == [None]:
+        # マーカーはないが改行で複数県が並記されているケース(例: "広島県\n山口県")
+        parts = [p.strip() for p in marker_map[None].split("\n") if p.strip()]
+        return "/".join(parts)
+    if marker_map:
+        return "/".join(v.strip() for v in marker_map.values())
+    return pref_raw.strip()
+
+
 def fetch_rows() -> list[tuple]:
     xlsx_url = find_latest_xlsx_url()
     resp = requests.get(xlsx_url, timeout=60)
@@ -64,46 +80,63 @@ def fetch_rows() -> list[tuple]:
     return [row for row in ws.iter_rows(values_only=True) if isinstance(row[0], int)]
 
 
-def rows_to_features(rows: list[tuple]) -> list[dict]:
+def rows_to_features(rows: list[tuple], overrides: dict) -> tuple[list[dict], list[dict]]:
     features = []
+    unresolved = []
     for row in rows:
         _, river_system, river, dam_name, ver, place, hours, pref, address_raw, url, _ = row
-        addresses = split_by_marker(address_raw)
-        if not addresses:
-            print(f"住所なしのためスキップ: {dam_name}", file=sys.stderr)
-            continue
+        addresses = split_by_marker(address_raw) or {None: None}
 
         for marker, address in addresses.items():
+            row_pref = clean_pref(pref, marker)
             # 配布場所がダム所在県と異なる県にある場合、住所側に別の都道府県名が
             # 既に含まれていることがあるため、その場合はダム所在県を重複付与しない
-            has_pref_prefix = any(address.startswith(p) for p in PREF_NAMES)
-            full_address = address if has_pref_prefix else f"{pref}{address}"
-            coords = geocode(full_address)
+            if address is None:
+                full_address = None
+            else:
+                has_pref_prefix = any(address.startswith(p) for p in PREF_NAMES)
+                full_address = address if has_pref_prefix else f"{row_pref}{address}"
+
+            key = f"{dam_name}#{marker}" if marker else dam_name
+            coords, source, used_address = resolve(key, full_address, overrides)
+
             if coords is None:
-                print(f"ジオコーディング失敗: {dam_name} / {full_address}", file=sys.stderr)
+                reason = "no_address" if not full_address else "geocode_failed"
+                if reason == "no_address":
+                    print(f"住所なしのためスキップ: {dam_name}", file=sys.stderr)
+                else:
+                    print(f"ジオコーディング失敗: {dam_name} / {used_address}", file=sys.stderr)
+                unresolved.append({
+                    "key": key, "reason": reason, "name": dam_name, "location_marker": marker,
+                    "pref": row_pref, "river_system": river_system, "river": river, "card_ver": str(ver),
+                    "facility": place, "hours": hours, "raw_address": full_address, "url": url,
+                })
                 continue
+
             features.append({
                 "type": "Feature",
                 "geometry": {"type": "Point", "coordinates": coords},
                 "properties": {
                     "name": dam_name,
                     "location_marker": marker,
-                    "pref": pref,
+                    "pref": row_pref,
                     "river_system": river_system,
                     "river": river,
                     "card_ver": str(ver),
                     "facility": place,
                     "hours": hours,
-                    "address": full_address,
+                    "address": used_address,
                     "url": url,
+                    "geocode_source": source,
                 },
             })
-    return features
+    return features, unresolved
 
 
 def main() -> None:
+    overrides = load_overrides(OVERRIDES_PATH)
     rows = fetch_rows()
-    features = rows_to_features(rows)
+    features, unresolved = rows_to_features(rows, overrides)
     features.sort(key=lambda f: (f["properties"]["pref"], f["properties"]["name"]))
 
     geojson = {
@@ -115,7 +148,8 @@ def main() -> None:
         "features": features,
     }
     OUTPUT_PATH.write_text(json.dumps(geojson, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{len(features)}件を{OUTPUT_PATH}に出力しました。(元データ{len(rows)}ダム)")
+    UNRESOLVED_PATH.write_text(json.dumps(unresolved, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"{len(features)}件を{OUTPUT_PATH}に出力しました。(元データ{len(rows)}ダム、未解決{len(unresolved)}件は{UNRESOLVED_PATH}へ)")
 
 
 if __name__ == "__main__":

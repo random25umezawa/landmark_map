@@ -49,3 +49,33 @@ def geocode(address: str) -> list[float] | None:
     _save_cache()
     time.sleep(REQUEST_INTERVAL_SEC)
     return coords
+
+
+def load_overrides(path: Path) -> dict:
+    """手動上書きファイル(JSON)を読み込む。存在しなければ空辞書。"""
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return {}
+
+
+def resolve(key: str, address: str | None, overrides: dict) -> tuple[list[float] | None, str, str | None]:
+    """手動上書き優先で座標を解決する。
+
+    戻り値: (座標 or None, "manual"/"auto", 実際に使った住所)
+    overrides[key] は {"lat":.., "lon":..} または {"address": "..."} の形式。
+    """
+    override = overrides.get(key)
+    if override:
+        if "lat" in override and "lon" in override:
+            return [override["lon"], override["lat"]], "manual", override.get("address", address)
+        if override.get("address"):
+            coords = geocode(override["address"])
+            if coords is not None:
+                return coords, "manual", override["address"]
+
+    if address:
+        coords = geocode(address)
+        if coords is not None:
+            return coords, "auto", address
+
+    return None, "auto", address

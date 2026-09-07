@@ -15,10 +15,12 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from geocode import geocode
+from geocode import load_overrides, resolve
 
 SEARCH_URL = "https://www.gk-p.jp/mhcard/"
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "data" / "manhole-card.geojson"
+UNRESOLVED_PATH = Path(__file__).resolve().parent.parent / "data" / "manhole-card-unresolved.json"
+OVERRIDES_PATH = Path(__file__).resolve().parent / "manual_overrides" / "manhole_card.json"
 REQUEST_INTERVAL_SEC = 1.0
 
 PREFECTURES = {
@@ -127,17 +129,27 @@ def fetch_all_entries() -> list[dict]:
     return entries
 
 
-def entries_to_features(entries: list[dict]) -> list[dict]:
+def entry_key(entry: dict) -> str:
+    """手動上書きファイルで各カードを一意に指す際のキー。"""
+    return f"{entry['pref']}|{entry['issuer']}|{entry['card_code']}|{entry['round']}"
+
+
+def entries_to_features(entries: list[dict], overrides: dict) -> tuple[list[dict], list[dict]]:
     features = []
+    unresolved = []
     for entry in entries:
-        address = entry["address"]
-        if not address:
-            print(f"住所なしのためスキップ: {entry['pref']} {entry['issuer']}", file=sys.stderr)
-            continue
-        coords = geocode(address)
+        key = entry_key(entry)
+        coords, source, used_address = resolve(key, entry["address"], overrides)
+
         if coords is None:
-            print(f"ジオコーディング失敗: {entry['pref']} {entry['issuer']} / {address}", file=sys.stderr)
+            reason = "no_address" if not entry["address"] else "geocode_failed"
+            if reason == "no_address":
+                print(f"住所なしのためスキップ: {entry['pref']} {entry['issuer']}", file=sys.stderr)
+            else:
+                print(f"ジオコーディング失敗: {entry['pref']} {entry['issuer']} / {used_address}", file=sys.stderr)
+            unresolved.append({"key": key, "reason": reason, **entry})
             continue
+
         features.append({
             "type": "Feature",
             "geometry": {"type": "Point", "coordinates": coords},
@@ -148,16 +160,18 @@ def entries_to_features(entries: list[dict]) -> list[dict]:
                 "round": entry["round"],
                 "issued_date": entry["issued_date"],
                 "facility": entry["facility"],
-                "address": address,
+                "address": used_address,
                 "facility_url": entry["facility_url"],
+                "geocode_source": source,
             },
         })
-    return features
+    return features, unresolved
 
 
 def main() -> None:
+    overrides = load_overrides(OVERRIDES_PATH)
     entries = fetch_all_entries()
-    features = entries_to_features(entries)
+    features, unresolved = entries_to_features(entries, overrides)
     features.sort(key=lambda f: (f["properties"]["pref"], f["properties"]["issuer"] or ""))
 
     geojson = {
@@ -169,7 +183,8 @@ def main() -> None:
         "features": features,
     }
     OUTPUT_PATH.write_text(json.dumps(geojson, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{len(features)}件を{OUTPUT_PATH}に出力しました。(元データ{len(entries)}件)")
+    UNRESOLVED_PATH.write_text(json.dumps(unresolved, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"{len(features)}件を{OUTPUT_PATH}に出力しました。(元データ{len(entries)}件、未解決{len(unresolved)}件は{UNRESOLVED_PATH}へ)")
 
 
 if __name__ == "__main__":
