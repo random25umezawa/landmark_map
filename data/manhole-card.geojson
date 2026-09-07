@@ -347,26 +347,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          136.692474,
-          35.070126
-        ]
-      },
-      "properties": {
-        "issuer": "桑名市",
-        "card_code": "B001",
-        "pref": "三重県",
-        "round": "第16弾",
-        "issued_date": "2022/01/15",
-        "facility": "桑名市住吉浦休憩施設",
-        "address": "三重県桑名市太一丸地先",
-        "facility_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           136.503006,
           35.013252
         ]
@@ -1007,6 +987,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          130.143661,
+          33.181274
+        ]
+      },
+      "properties": {
+        "issuer": "白石町",
+        "card_code": null,
+        "pref": "佐賀県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "【平日】佐賀県白石町役場生活環境課（庁舎2階）",
+        "address": "佐賀県杵島郡白石町大字福田1247-1",
+        "facility_url": "https://www.town.shiroishi.lg.jp/jyuumin/seikatsu/jyougesuidou/gesuidou"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           130.371002,
           33.31226
         ]
@@ -1140,26 +1140,6 @@
         "facility": "道の駅よかわ（山田錦の館）",
         "address": "兵庫県三木市吉川町吉安２２２",
         "facility_url": "https://www.76-2401.com/company"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          134.977509,
-          34.792995
-        ]
-      },
-      "properties": {
-        "issuer": "三木市",
-        "card_code": "C001",
-        "pref": "兵庫県",
-        "round": "第22弾",
-        "issued_date": "2024/04/26",
-        "facility": "あじさいフローラみき",
-        "address": "兵庫県三木市福井字三木山",
-        "facility_url": "https://ajisaiflora-miki.com/index.html"
       }
     },
     {
@@ -1340,6 +1320,26 @@
         "facility": "加古川観光案内所",
         "address": "兵庫県住所：加古川市加古川町篠原町503-2（ＪＲ加古川駅構内）",
         "facility_url": "http://kako-navi.jp/information.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.935516,
+          34.923813
+        ]
+      },
+      "properties": {
+        "issuer": "加東市",
+        "card_code": "A001",
+        "pref": "兵庫県",
+        "round": "第12弾",
+        "issued_date": "2020/04/25",
+        "facility": "（一社）加東市観光協会",
+        "address": "兵庫県加東市河高4028",
+        "facility_url": "http://www.kato-kanko.jp/ "
       }
     },
     {
@@ -2127,6 +2127,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          144.073364,
+          44.120422
+        ]
+      },
+      "properties": {
+        "issuer": "北見市",
+        "card_code": "B001",
+        "pref": "北海道",
+        "round": "第10弾",
+        "issued_date": "2019/08/07",
+        "facility": "【平日】北見市上下水道局常呂上下水道課窓口（北見市役所常呂総合支所内）",
+        "address": "北海道北見市常呂町字常呂323番地",
+        "facility_url": "https://www.city.kitami.lg.jp/soshiki/tokoro/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           141.651962,
           42.821976
         ]
@@ -2140,6 +2160,26 @@
         "facility": "【平日】千歳市水道局庁舎2F経営管理課総務係窓口",
         "address": "北海道千歳市東雲町3丁目2番地5",
         "facility_url": "https://www.city.chitose.lg.jp/docs/28386.html?cat=%2F95%2F95_170%2F95_170_938%2F"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.583267,
+          43.158207
+        ]
+      },
+      "properties": {
+        "issuer": "南富良野町",
+        "card_code": null,
+        "pref": "北海道",
+        "round": "第12弾",
+        "issued_date": "2020/04/25",
+        "facility": "南富良野浄化センター",
+        "address": "北海道南富良野町字幾寅505番地5",
+        "facility_url": "https://www.town.minamifurano.hokkaido.jp/"
       }
     },
     {
@@ -2387,26 +2427,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.379395,
-          43.312824
-        ]
-      },
-      "properties": {
-        "issuer": "富良野市",
-        "card_code": "B001",
-        "pref": "北海道",
-        "round": "第29弾",
-        "issued_date": "2026/07/31",
-        "facility": "富良野チーズ工房",
-        "address": "北海道富良野市中五区",
-        "facility_url": "https://www.furano-cheese.jp/"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           140.994705,
           43.192116
         ]
@@ -2480,6 +2500,26 @@
         "facility": "ホロカル",
         "address": "北海道天塩郡幌延町1条北1丁目28番地（幌延駅構内）",
         "facility_url": "https://www.horokaru.com/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.446136,
+          43.177788
+        ]
+      },
+      "properties": {
+        "issuer": "当別町",
+        "card_code": null,
+        "pref": "北海道",
+        "round": "第10弾",
+        "issued_date": "2019/08/07",
+        "facility": "北欧の風 道の駅とうべつ",
+        "address": "北海道石狩郡当別町当別太774番地11",
+        "facility_url": "https://tobest.co.jp/michinoeki/"
       }
     },
     {
@@ -2847,26 +2887,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.084366,
-          44.196751
-        ]
-      },
-      "properties": {
-        "issuer": "滝上町",
-        "card_code": null,
-        "pref": "北海道",
-        "round": "第22弾",
-        "issued_date": "2024/04/26",
-        "facility": "道の駅香りの里たきのうえ",
-        "address": "北海道紋別郡滝上町旭町",
-        "facility_url": "https://town.takinoue.hokkaido.jp/shokai/shisetsu/kankou/michinoeki.html"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           141.902222,
           43.556351
         ]
@@ -2880,6 +2900,26 @@
         "facility": "たきかわ観光国際スクエア",
         "address": "北海道滝川市栄町4丁目9−1",
         "facility_url": "http://www.city.takikawa.hokkaido.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.646851,
+          43.938831
+        ]
+      },
+      "properties": {
+        "issuer": "留萌市",
+        "card_code": null,
+        "pref": "北海道",
+        "round": "第13弾",
+        "issued_date": "2020/12/17",
+        "facility": "留萌プラザ2F　まちなか賑わい広場",
+        "address": "北海道留萌市開運町3丁目4番11号",
+        "facility_url": "https://rumoi.main.jp/shoplist/%e3%82%8b%e3%82%82%e3%81%84%e3%83%97%e3%83%a9%e3%82%b6/"
       }
     },
     {
@@ -3107,26 +3147,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          141.825745,
-          45.079037
-        ]
-      },
-      "properties": {
-        "issuer": "豊富町",
-        "card_code": "B001",
-        "pref": "北海道",
-        "round": "第12弾",
-        "issued_date": "2020/04/25",
-        "facility": "湯の杜ぽっけ",
-        "address": "北海道天塩郡豊富町字温泉",
-        "facility_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           141.778702,
           45.102924
         ]
@@ -3140,26 +3160,6 @@
         "facility": "豊富町定住支援センター（ふらっと★きた）",
         "address": "北海道天塩郡豊富町字豊富東1条6丁目",
         "facility_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          141.772842,
-          45.10487
-        ]
-      },
-      "properties": {
-        "issuer": "豊富町",
-        "card_code": "D001",
-        "pref": "北海道",
-        "round": "第17弾",
-        "issued_date": "2022/08/06",
-        "facility": "豊富町観光情報センター",
-        "address": "北海道天塩郡豊富町字豊富駅前通（JR豊富駅となり）",
-        "facility_url": "http://toyotomi-kanko.net/"
       }
     },
     {
@@ -3320,6 +3320,26 @@
         "facility": "【平日】陸別町役場 建設課",
         "address": "北海道足寄郡陸別町字陸別東1条3-1",
         "facility_url": "https://www.rikubetsu.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.958832,
+          44.583515
+        ]
+      },
+      "properties": {
+        "issuer": "雄武町",
+        "card_code": null,
+        "pref": "北海道",
+        "round": "第18弾",
+        "issued_date": "2023/01/28",
+        "facility": "道の駅おうむ",
+        "address": "北海道紋別郡雄武町雄武1885番地14",
+        "facility_url": null
       }
     },
     {
@@ -3747,8 +3767,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.970871,
-          35.861233
+          139.975632,
+          35.85659
         ]
       },
       "properties": {
@@ -3758,7 +3778,7 @@
         "round": "第02弾",
         "issued_date": "2016/08/01",
         "facility": "柏市上下水道局３階総務課",
-        "address": "千葉県柏市柏1-1-11ファミリかしわ3階",
+        "address": "千葉県柏市千代田一丁目２番３２号",
         "facility_url": "https://www.city.kashiwa.lg.jp/somu/living_environment/gesui/1561/manholecard.html"
       }
     },
@@ -3820,6 +3840,26 @@
         "facility": "流山おおたかの森駅前観光情報センター（スターツおおたかの森ホール2階）",
         "address": "千葉県流山市おおたかの森北1-2-1",
         "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.902008,
+          35.653732
+        ]
+      },
+      "properties": {
+        "issuer": "浦安市",
+        "card_code": "A001",
+        "pref": "千葉県",
+        "round": "第12弾",
+        "issued_date": "2020/04/25",
+        "facility": "【平日】浦安市役所道路整備課（市役所6階）",
+        "address": "千葉県浦安市猫実1-1-1",
+        "facility_url": "http://www.city.urayasu.lg.jp/index.html"
       }
     },
     {
@@ -5227,6 +5267,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.315689,
+          35.886631
+        ]
+      },
+      "properties": {
+        "issuer": "日高市",
+        "card_code": "B001",
+        "pref": "埼玉県",
+        "round": "第14弾",
+        "issued_date": "2021/04/25",
+        "facility": "高麗公民館",
+        "address": "埼玉県日高市大字栗坪92番地２",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           139.189713,
           36.242867
         ]
@@ -5787,8 +5847,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          131.605545,
-          33.232632
+          131.604324,
+          33.237999
         ]
       },
       "properties": {
@@ -5798,7 +5858,7 @@
         "round": "第20弾",
         "issued_date": "2023/07/28",
         "facility": "①大分市竹町通商店街振興組合",
-        "address": "大分県大分市要町1-1（JR大分駅構内）",
+        "address": "大分県大分市中央町3丁目6番7号",
         "facility_url": "http://www.takemachi.jp/index.html"
       }
     },
@@ -6267,26 +6327,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.555695,
-          34.503662
-        ]
-      },
-      "properties": {
-        "issuer": "大阪狭山市",
-        "card_code": "A001",
-        "pref": "大阪府",
-        "round": "第02弾",
-        "issued_date": "2016/08/01",
-        "facility": "大阪府立狭山池博物館",
-        "address": "大阪府大阪狭市池尻中二丁目",
-        "facility_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           135.555862,
           34.503681
         ]
@@ -6380,6 +6420,26 @@
         "facility": "寝屋川市上下水道局 下水道事業室",
         "address": "大阪府寝屋川市本町15-1",
         "facility_url": "http://www.city.neyagawa.osaka.jp/organization_list/joge_suido/gesuido/index.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.378204,
+          34.460583
+        ]
+      },
+      "properties": {
+        "issuer": "岸和田市",
+        "card_code": "A001",
+        "pref": "大阪府",
+        "round": "第07弾",
+        "issued_date": "2018/04/28",
+        "facility": "岸和田駅前観光案内所",
+        "address": "大阪府岸和田市宮本町1番12号",
+        "facility_url": null
       }
     },
     {
@@ -7127,8 +7187,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.239685,
-          34.359592
+          135.234375,
+          34.355755
         ]
       },
       "properties": {
@@ -7137,8 +7197,8 @@
         "pref": "大阪府",
         "round": "第17弾",
         "issued_date": "2022/08/06",
-        "facility": "【平日】",
-        "address": "阪南市都市整備部下水道課（阪南市分室２階）",
+        "facility": "阪南市都市整備部下水道課（阪南市分室２階）",
+        "address": "大阪府阪南市鳥取74-1",
         "facility_url": "http://www.city.hannan.lg.jp/"
       }
     },
@@ -7280,6 +7340,46 @@
         "facility": "【平日】大和郡山市上下水道部 下水道推進課",
         "address": "奈良県大和郡山市植槻町6-10（上下水道部庁舎2階）",
         "facility_url": "https://www.city.yamatokoriyama.lg.jp/index.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.842606,
+          34.560184
+        ]
+      },
+      "properties": {
+        "issuer": "天理市",
+        "card_code": null,
+        "pref": "奈良県",
+        "round": "第04弾",
+        "issued_date": "2017/04/03",
+        "facility": "天理市立黒塚古墳展示館",
+        "address": "奈良県天理市柳本町1118番地2",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.830917,
+          34.674202
+        ]
+      },
+      "properties": {
+        "issuer": "奈良市",
+        "card_code": null,
+        "pref": "奈良県",
+        "round": "第06弾",
+        "issued_date": "2017/12/09",
+        "facility": "奈良町南観光案内所",
+        "address": "奈良県奈良市井上町１１番地",
+        "facility_url": null
       }
     },
     {
@@ -7487,8 +7587,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.975601,
-          38.330269
+          140.975922,
+          38.330311
         ]
       },
       "properties": {
@@ -7497,8 +7597,8 @@
         "pref": "宮城県",
         "round": "第14弾",
         "issued_date": "2021/04/25",
-        "facility": "宮城県宮城郡利府町利府字新並松４番地",
-        "address": "利府町役場町民交流館「ペア・パル利府」",
+        "facility": "利府町役場町民交流館「ペア・パル利府」",
+        "address": "宮城県宮城郡利府町利府字新並松４番地",
         "facility_url": null
       }
     },
@@ -7560,26 +7660,6 @@
         "facility": "名取市観光物産協会　ナトリサン",
         "address": "宮城県名取市杜せきのした５丁目３−１（イオンモール名取１Ｆ）",
         "facility_url": "https://www.kankou.natori.miyagi.jp/tokusan/11870"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          140.919373,
-          38.144398
-        ]
-      },
-      "properties": {
-        "issuer": "名取市",
-        "card_code": "C001",
-        "pref": "宮城県",
-        "round": "第26弾",
-        "issued_date": "2025/07/25",
-        "facility": "名取市観光物産協会陣中仙台国際空港店２階",
-        "address": "宮城県名取市下増田字南原無番地",
-        "facility_url": "https://www.kankou.natori.miyagi.jp/gourmet/9619"
       }
     },
     {
@@ -7780,6 +7860,26 @@
         "facility": "【平日】石巻浄化センター（（株）アイ・ケー・エス）",
         "address": "宮城県石巻市蛇田字新〆切5-2",
         "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.92807,
+          38.113171
+        ]
+      },
+      "properties": {
+        "issuer": "宮城県",
+        "card_code": "流域下水道",
+        "pref": "宮城県",
+        "round": "第14弾",
+        "issued_date": "2021/04/25",
+        "facility": "【平日】県南浄化センター内 (株)みずむすびサービスみやぎ 県南浄化センター管理棟内",
+        "address": "宮城県岩沼市下野郷字赤江川1-3",
+        "facility_url": "https://www.pref.miyagi.jp/soshiki/senen-wwt/sisetusyoukai.html"
       }
     },
     {
@@ -8027,8 +8127,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.973038,
-          31.996765
+          137.794678,
+          36.531887
         ]
       },
       "properties": {
@@ -8037,8 +8137,8 @@
         "pref": "宮崎県",
         "round": "第25弾",
         "issued_date": "2025/04/25",
-        "facility": "【平日】",
-        "address": "宮崎県小林市役所上下水道課",
+        "facility": "宮崎県小林市役所上下水道課",
+        "address": "平日：宮崎県小林市細野300番地",
         "facility_url": "https://www.city.kobayashi.lg.jp/index.html"
       }
     },
@@ -8120,6 +8220,26 @@
         "facility": "富山市民プラザ",
         "address": "富山県富山市大手町６番１４号",
         "facility_url": "https://www.siminplaza.co.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.234406,
+          36.759396
+        ]
+      },
+      "properties": {
+        "issuer": "富山市",
+        "card_code": "E001",
+        "pref": "富山県",
+        "round": "第15弾",
+        "issued_date": "2021/08/17",
+        "facility": "岩瀬カナル会館",
+        "address": "富山県富山市岩瀬天神町48",
+        "facility_url": "http://canal.or.jp/"
       }
     },
     {
@@ -8458,7 +8578,7 @@
         "round": "第08弾",
         "issued_date": "2018/08/11",
         "facility": "長府観光会館",
-        "address": "下関市長府侍町二丁目1-15",
+        "address": "山口県下関市長府侍町二丁目1-15",
         "facility_url": "https://shimonoseki-kgb.jp/spot/%e9%95%b7%e5%ba%9c%e8%a6%b3%e5%85%89%e4%bc%9a%e9%a4%a8/"
       }
     },
@@ -9467,8 +9587,28 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.905533,
-          35.551628
+          138.905884,
+          35.552021
+        ]
+      },
+      "properties": {
+        "issuer": "都留市",
+        "card_code": "A001",
+        "pref": "山梨県",
+        "round": "第21弾",
+        "issued_date": "2023/12/15",
+        "facility": "【平日】都留市上下水道課下水道担当",
+        "address": "山梨県都留市上谷１丁目1-1",
+        "facility_url": "https://www.city.tsuru.yamanashi.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.905884,
+          35.552021
         ]
       },
       "properties": {
@@ -9477,8 +9617,8 @@
         "pref": "山梨県",
         "round": "第27弾",
         "issued_date": "2025/12/19",
-        "facility": "【平日】",
-        "address": "山梨県都留市役所上下水道課下水道担当",
+        "facility": "山梨県都留市役所上下水道課下水道担当",
+        "address": "山梨県都留市上谷１丁目1-1",
         "facility_url": "https://www.city.tsuru.yamanashi.jp/"
       }
     },
@@ -9827,6 +9967,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          136.926865,
+          35.628452
+        ]
+      },
+      "properties": {
+        "issuer": "郡上市",
+        "card_code": "D001",
+        "pref": "岐阜県",
+        "round": "第24弾",
+        "issued_date": "2024/12/20",
+        "facility": "道の駅 美並物産館",
+        "address": "岐阜県郡上市美並町上田2605",
+        "facility_url": "https://jm-minami.com/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           136.917892,
           35.495411
         ]
@@ -9960,6 +10120,26 @@
         "facility": "高山市役所久々野支所基盤産業課窓口",
         "address": "岐阜県高山市久々野町無数河580番地1",
         "facility_url": "https://www.city.takayama.lg.jp/shisetsu/1004139/1000027/1001410.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.348541,
+          36.074844
+        ]
+      },
+      "properties": {
+        "issuer": "高山市",
+        "card_code": "G001",
+        "pref": "岐阜県",
+        "round": "第18弾",
+        "issued_date": "2023/01/28",
+        "facility": "【通常】道の駅ひだ朝日村",
+        "address": "岐阜県高山市朝日町万石150番地",
+        "facility_url": "http://www.gix.or.jp/~z33asahi/index.html"
       }
     },
     {
@@ -10827,6 +11007,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          141.076675,
+          39.735058
+        ]
+      },
+      "properties": {
+        "issuer": "滝沢市",
+        "card_code": "B001",
+        "pref": "岩手県",
+        "round": "第26弾",
+        "issued_date": "2025/07/25",
+        "facility": "【平日】岩手県滝沢市施設課",
+        "address": "岩手県滝沢市中鵜飼55",
+        "facility_url": "http://www.city.takizawa.iwate.jp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           141.153412,
           39.701046
         ]
@@ -11327,6 +11527,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          132.889954,
+          35.300518
+        ]
+      },
+      "properties": {
+        "issuer": "雲南市",
+        "card_code": null,
+        "pref": "島根県",
+        "round": "第12弾",
+        "issued_date": "2020/04/25",
+        "facility": "うんなん観光案内所",
+        "address": "島根県雲南市三刀屋町三刀屋73番地3（コトリエット内）",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           133.083344,
           34.400368
         ]
@@ -11607,6 +11827,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          132.457901,
+          34.405701
+        ]
+      },
+      "properties": {
+        "issuer": "広島市",
+        "card_code": "F001",
+        "pref": "広島県",
+        "round": "第23弾",
+        "issued_date": "2024/07/26",
+        "facility": "広島市中央老人福祉センター",
+        "address": "広島県広島市中区西白島町24－36",
+        "facility_url": "https://www.city.hiroshima.lg.jp/site/koureisha/5902.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.449799,
+          34.411896
+        ]
+      },
+      "properties": {
+        "issuer": "広島市",
+        "card_code": "G001",
+        "pref": "広島県",
+        "round": "第24弾",
+        "issued_date": "2024/12/20",
+        "facility": "広島市三篠公民館",
+        "address": "広島県広島市西区打越町10番23号",
+        "facility_url": "http://www.cf.city.hiroshima.jp/misasa-k/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           133.424271,
           34.433903
         ]
@@ -11620,6 +11880,26 @@
         "facility": "広島県芦田川流域下水道浄化センター",
         "address": "広島県福山市箕沖町106",
         "facility_url": "http://www.kengesui-hiroshima.or.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.233566,
+          34.575722
+        ]
+      },
+      "properties": {
+        "issuer": "府中市",
+        "card_code": null,
+        "pref": "広島県",
+        "round": "第21弾",
+        "issued_date": "2023/12/15",
+        "facility": "（一社）府中市観光協会",
+        "address": "広島県府中市府中町559-2",
+        "facility_url": "https://fuchu-kanko.jp/"
       }
     },
     {
@@ -11747,6 +12027,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          132.917007,
+          34.332882
+        ]
+      },
+      "properties": {
+        "issuer": "竹原市",
+        "card_code": "A001",
+        "pref": "広島県",
+        "round": "第05弾",
+        "issued_date": "2017/08/01",
+        "facility": "たけはら　海の駅　1階売店",
+        "address": "広島県竹原市港町4丁目2番24号",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           132.912018,
           34.343628
         ]
@@ -11820,6 +12120,26 @@
         "facility": "①阿波おどり会館",
         "address": "徳島県徳島市新町橋2丁目20番地 阿波おどり会館1階",
         "facility_url": "https://www.awaodori-kaikan.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.60347,
+          34.120705
+        ]
+      },
+      "properties": {
+        "issuer": "徳島県",
+        "card_code": "流域下水道",
+        "pref": "徳島県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "【平日】旧吉野川浄化センター（愛称：アクアきらら月見ヶ丘）",
+        "address": "徳島県板野郡松茂町豊岡字山の手41",
+        "facility_url": " http://www.toku-eta.or.jp/"
       }
     },
     {
@@ -12527,6 +12847,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          136.903229,
+          35.1922
+        ]
+      },
+      "properties": {
+        "issuer": "名古屋市",
+        "card_code": "A001",
+        "pref": "愛知県",
+        "round": "第01弾",
+        "issued_date": "2016/04/01",
+        "facility": "メタウォーター下水道科学館なごや（名古屋市下水道科学館）",
+        "address": "愛知県名古屋市北区名城1-3-3",
+        "facility_url": "http://waterlab.nagoya/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           136.95636,
           35.175877
         ]
@@ -12720,6 +13060,26 @@
         "facility": "カクキュー八丁味噌の郷",
         "address": "愛知県岡崎市八帖町字往還通69",
         "facility_url": "https://okazaki-kanko.jp/okazaki-park/eat/33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.194504,
+          35.029381
+        ]
+      },
+      "properties": {
+        "issuer": "岡崎市",
+        "card_code": "E001",
+        "pref": "愛知県",
+        "round": "第15弾",
+        "issued_date": "2021/08/17",
+        "facility": "奥殿陣屋　書院内",
+        "address": "愛知県岡崎市奥殿町雑谷下10番地",
+        "facility_url": null
       }
     },
     {
@@ -13087,6 +13447,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          136.906586,
+          35.18021
+        ]
+      },
+      "properties": {
+        "issuer": "犬山市",
+        "card_code": null,
+        "pref": "愛知県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "【平日】犬山市役所 本庁舎2階　下水道課",
+        "address": "愛知県【休日】犬山市役所 本庁舎1F宿直",
+        "facility_url": "http://www.city.inuyama.aichi.jp/kurashi/shinyou/1000701/index.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           136.888458,
           34.967548
         ]
@@ -13147,6 +13527,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          136.906586,
+          35.18021
+        ]
+      },
+      "properties": {
+        "issuer": "稲沢市",
+        "card_code": null,
+        "pref": "愛知県",
+        "round": "第05弾",
+        "issued_date": "2017/08/01",
+        "facility": "稲沢市役所 上下水道庁舎",
+        "address": "愛知県〒492-8271 稲沢市石橋六丁目82",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           137.234604,
           34.815155
         ]
@@ -13167,8 +13567,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          136.786942,
-          35.132221
+          136.78183,
+          35.135792
         ]
       },
       "properties": {
@@ -13177,8 +13577,8 @@
         "pref": "愛知県",
         "round": "第10弾",
         "issued_date": "2019/08/07",
-        "facility": "【平日】",
-        "address": "蟹江町水道事務所（蟹江町上下水道部下水道課）",
+        "facility": "蟹江町水道事務所（蟹江町上下水道部下水道課）",
+        "address": "愛知県海部郡蟹江町学戸一丁目225番地",
         "facility_url": "http://www.town.kanie.aichi.jp/"
       }
     },
@@ -13280,26 +13680,6 @@
         "facility": "【平日】豊明市役所 下水道課",
         "address": "愛知県豊明市新田町子持松1-1",
         "facility_url": "https://www.city.toyoake.lg.jp/"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          137.3815,
-          34.763454
-        ]
-      },
-      "properties": {
-        "issuer": "豊橋市",
-        "card_code": "A001",
-        "pref": "愛知県",
-        "round": "第02弾",
-        "issued_date": "2016/08/01",
-        "facility": "豊橋観光案内所",
-        "address": "愛知県豊橋市花田町西宿無番地（豊橋駅構内）",
-        "facility_url": "http://www.city.toyohashi.lg.jp/23688.htm"
       }
     },
     {
@@ -14287,6 +14667,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          138.851379,
+          37.446819
+        ]
+      },
+      "properties": {
+        "issuer": "長岡市",
+        "card_code": "A001",
+        "pref": "新潟県",
+        "round": "第07弾",
+        "issued_date": "2018/04/28",
+        "facility": "ながおか市民協働センター",
+        "address": "新潟県長岡市大手通１－４－10",
+        "facility_url": "https://nkyod.org/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           138.806824,
           37.451694
         ]
@@ -14667,6 +15067,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.449371,
+          35.699146
+        ]
+      },
+      "properties": {
+        "issuer": "国立市",
+        "card_code": "A001",
+        "pref": "東京都",
+        "round": "第11弾",
+        "issued_date": "2019/12/14",
+        "facility": "旧国立駅舎",
+        "address": "東京都国立市東１－１－６９",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           139.432449,
           35.679855
         ]
@@ -14807,26 +15227,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.20961,
-          27.071243
-        ]
-      },
-      "properties": {
-        "issuer": "小笠原村",
-        "card_code": null,
-        "pref": "東京都",
-        "round": "第18弾",
-        "issued_date": "2023/01/28",
-        "facility": "小笠原村観光協会",
-        "address": "東京都小笠原村父島字東町",
-        "facility_url": "https://www.ogasawaramura.com/"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           139.504944,
           35.69883
         ]
@@ -14887,8 +15287,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.477585,
-          35.669403
+          139.479401,
+          35.669147
         ]
       },
       "properties": {
@@ -14897,8 +15297,8 @@
         "pref": "東京都",
         "round": "第16弾",
         "issued_date": "2022/01/15",
-        "facility": "東京都府中市宮町3丁目1番地",
-        "address": "府中市観光情報センター",
+        "facility": "府中市観光情報センター",
+        "address": "東京都府中市宮町3丁目1番地",
         "facility_url": "http://www.kankou-fuchu.com/"
       }
     },
@@ -15947,6 +16347,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.338806,
+          35.654045
+        ]
+      },
+      "properties": {
+        "issuer": "東京都都市づくり公社",
+        "card_code": null,
+        "pref": "東京都",
+        "round": "第27弾",
+        "issued_date": "2025/12/19",
+        "facility": "公益財団法人東京都都市づくり公社下水道部",
+        "address": "東京都八王子市子安町4-7-1サザンスカイタワー八王子7階",
+        "facility_url": "https://www.toshizukuri.or.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           139.426498,
           35.745262
         ]
@@ -16627,8 +17047,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.859787,
-          36.652321
+          139.883057,
+          36.550228
         ]
       },
       "properties": {
@@ -16637,8 +17057,8 @@
         "pref": "栃木県",
         "round": "第03弾",
         "issued_date": "2016/12/01",
-        "facility": "【平日】2階 経営企画課",
-        "address": "宇都宮市上下水道局",
+        "facility": "宇都宮市上下水道局",
+        "address": "栃木県宇都宮市河原町1-41",
         "facility_url": "http://www.city.utsunomiya.tochigi.jp/josuido/index.html"
       }
     },
@@ -16647,8 +17067,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.882599,
-          36.555115
+          139.897675,
+          36.560127
         ]
       },
       "properties": {
@@ -16657,8 +17077,8 @@
         "pref": "栃木県",
         "round": "第10弾",
         "issued_date": "2019/08/07",
-        "facility": "栃木県宇都宮市川向町1-23",
-        "address": "宇都宮市観光案内所",
+        "facility": "宇都宮市観光案内所",
+        "address": "栃木県宇都宮市川向町1-23",
         "facility_url": "http://www.utsunomiya-cvb.org/9168.html "
       }
     },
@@ -16680,6 +17100,26 @@
         "facility": "交通未来都市うつのみやオープンスクエア",
         "address": "栃木県宇都宮市駅前通り1丁目4-6 トナリエ宇都宮 3階",
         "facility_url": "https://u-movenext.net/open-square/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.882828,
+          36.555946
+        ]
+      },
+      "properties": {
+        "issuer": "宇都宮市",
+        "card_code": "D001",
+        "pref": "栃木県",
+        "round": "第26弾",
+        "issued_date": "2025/07/25",
+        "facility": "【平日】宇都宮市役所文化都市推進課",
+        "address": "栃木県宇都宮市旭1-1-5",
+        "facility_url": "https://www.city.utsunomiya.lg.jp/shisei/kikou/soshiki/1035660.html"
       }
     },
     {
@@ -17207,8 +17647,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.466461,
-          40.745602
+          127.805649,
+          26.334202
         ]
       },
       "properties": {
@@ -17218,7 +17658,7 @@
         "round": "第26弾",
         "issued_date": "2025/07/25",
         "facility": "もとぶかりゆし市場",
-        "address": "沖和県国頭郡本部町字大浜881-1",
+        "address": "沖縄県沖和県国頭郡本部町字大浜881-1",
         "facility_url": "https://motobufs.jp/tempo/"
       }
     },
@@ -17700,6 +18140,26 @@
         "facility": "近江八幡市水道事業所上下水道施設課窓口",
         "address": "滋賀県近江八幡市桜宮町214-10",
         "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.012421,
+          35.103294
+        ]
+      },
+      "properties": {
+        "issuer": "野洲市",
+        "card_code": null,
+        "pref": "滋賀県",
+        "round": "第26弾",
+        "issued_date": "2025/07/25",
+        "facility": "【平日】野洲市上下水道事業所事務室",
+        "address": "滋賀県野洲市西河原2400番地",
+        "facility_url": "https://www.city.yasu.lg.jp/"
       }
     },
     {
@@ -18887,6 +19347,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.657227,
+          35.28447
+        ]
+      },
+      "properties": {
+        "issuer": "横須賀市",
+        "card_code": "C001",
+        "pref": "神奈川県",
+        "round": "第21弾",
+        "issued_date": "2023/12/15",
+        "facility": "よこすか近代遺産ミュージアム　ティボディエ邸",
+        "address": "神奈川県横須賀市汐入町１丁目１　ヴェルニー公園内",
+        "facility_url": "https://thibaudier-yokosuka.com/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           139.662231,
           35.257931
         ]
@@ -18960,6 +19440,26 @@
         "facility": "相模原市役所 都市建設局 土木部 下水道経営課総務・計画班",
         "address": "神奈川県相模原市中央区中央2-11-15（第1別館2階）",
         "facility_url": "http://www.city.sagamihara.kanagawa.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.189041,
+          35.617519
+        ]
+      },
+      "properties": {
+        "issuer": "相模原市",
+        "card_code": "B001",
+        "pref": "神奈川県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "相模湖観光案内所",
+        "address": "神奈川県相模原市緑区与瀬1183",
+        "facility_url": "https://www.e-sagamihara.com/information-center/"
       }
     },
     {
@@ -19147,6 +19647,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.447906,
+          35.340195
+        ]
+      },
+      "properties": {
+        "issuer": "藤沢市",
+        "card_code": "A001",
+        "pref": "神奈川県",
+        "round": "第10弾",
+        "issued_date": "2019/08/07",
+        "facility": "藤沢市藤澤浮世絵館",
+        "address": "神奈川県藤沢市辻堂神台二丁目2番2号　ココテラス湘南7階",
+        "facility_url": "http://fujisawa-ukiyoekan.net/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           139.487289,
           35.346458
         ]
@@ -19280,6 +19800,26 @@
         "facility": "人道の港敦賀ムゼウム",
         "address": "福井県敦賀市金ケ崎町23-1",
         "facility_url": "https://tsuruga-museum.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.218506,
+          36.06575
+        ]
+      },
+      "properties": {
+        "issuer": "福井市",
+        "card_code": "A001",
+        "pref": "福井県",
+        "round": "第02弾",
+        "issued_date": "2016/08/01",
+        "facility": "福井市上下水道局経営部経営管理課",
+        "address": "福井県福井市大手3-13-1（上下水道局3階）",
+        "facility_url": "http://www.city.fukui.lg.jp/kurasi/gesui/gesuiproject/mcard.html"
       }
     },
     {
@@ -19487,6 +20027,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          130.468857,
+          33.729477
+        ]
+      },
+      "properties": {
+        "issuer": "古賀市",
+        "card_code": null,
+        "pref": "福岡県",
+        "round": "第13弾",
+        "issued_date": "2020/12/17",
+        "facility": "【平日】福岡県古賀市役所上下水道庁舎",
+        "address": "福岡県古賀市駅東1-1-1",
+        "facility_url": "https://www.city.koga.fukuoka.jp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           130.446136,
           33.030174
         ]
@@ -19627,6 +20187,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          130.5896,
+          33.804909
+        ]
+      },
+      "properties": {
+        "issuer": "宗像市",
+        "card_code": "B001",
+        "pref": "福岡県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "街道の駅赤馬館（宗像市東部観光拠点施設）",
+        "address": "福岡県宗像市赤間4-1-8",
+        "facility_url": "http://www.akamakan.info/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           130.555832,
           33.396526
         ]
@@ -19687,8 +20267,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.406113,
-          33.163055
+          130.405609,
+          33.163387
         ]
       },
       "properties": {
@@ -19697,8 +20277,8 @@
         "pref": "福岡県",
         "round": "第25弾",
         "issued_date": "2025/04/25",
-        "facility": "【平日】",
-        "address": "福岡県柳川市役所上下水道課",
+        "facility": "福岡県柳川市役所上下水道課",
+        "address": "福岡県柳川市本町87-1",
         "facility_url": "https://www.city.yanagawa.fukuoka.jp/kurashi/jogesuido/gesui/"
       }
     },
@@ -20067,6 +20647,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.929825,
+          37.495094
+        ]
+      },
+      "properties": {
+        "issuer": "会津若松市",
+        "card_code": null,
+        "pref": "福島県",
+        "round": "第02弾",
+        "issued_date": "2016/08/01",
+        "facility": "会津若松市役所",
+        "address": "福島県会津若松市東栄町３番４６号",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           140.992737,
           37.56551
         ]
@@ -20427,6 +21027,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          140.460678,
+          37.753189
+        ]
+      },
+      "properties": {
+        "issuer": "福島市",
+        "card_code": "B001",
+        "pref": "福島県",
+        "round": "第13弾",
+        "issued_date": "2020/12/17",
+        "facility": "福島市観光案内所（JR福島駅西口２階）",
+        "address": "福島県福島市栄町１－１",
+        "facility_url": "https://www.f-kankou.jp/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           140.457138,
           37.592422
         ]
@@ -20460,6 +21080,26 @@
         "facility": "【平日】福島県県北浄化センター",
         "address": "福島県伊達郡国見町大字徳江字上悪戸46番地1",
         "facility_url": "https://www.pref.fukushima.lg.jp/sec/41055c/mhcard.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.141815,
+          37.138748
+        ]
+      },
+      "properties": {
+        "issuer": "西郷村",
+        "card_code": null,
+        "pref": "福島県",
+        "round": "第07弾",
+        "issued_date": "2018/04/28",
+        "facility": "西郷村農産物産館「まるごと西郷館」",
+        "address": "福島県西郷村大字熊倉字折口原146番地",
+        "facility_url": "https://www.marugoto-nishigo.com/"
       }
     },
     {
@@ -20620,6 +21260,26 @@
         "facility": "てんのうグリーンマーケット(道の駅てんのう)",
         "address": "秋田県潟上市天王字江川上谷地109-2",
         "facility_url": "https://michinoeki-tenno.jp"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.848312,
+          39.884434
+        ]
+      },
+      "properties": {
+        "issuer": "男鹿市",
+        "card_code": null,
+        "pref": "秋田県",
+        "round": "第12弾",
+        "issued_date": "2020/04/25",
+        "facility": "「道の駅おが」男鹿市複合観光施設オガーレ",
+        "address": "秋田県男鹿市船川港船川字新浜町1-19",
+        "facility_url": null
       }
     },
     {
@@ -20907,6 +21567,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          139.005249,
+          36.50119
+        ]
+      },
+      "properties": {
+        "issuer": "渋川市",
+        "card_code": "A001",
+        "pref": "群馬県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "中央公民館（渋川東部公民館）",
+        "address": "群馬県渋川市渋川908番地21",
+        "facility_url": "https://www.city.shibukawa.lg.jp/kosodate/shougaigakushuu/cyuokominkan/p000926.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           138.924347,
           36.494984
         ]
@@ -20940,6 +21620,26 @@
         "facility": "渋川地区名産品センター（しぶさん）",
         "address": "群馬県渋川市渋川1832番地27 渋川駅前プラザ",
         "facility_url": "http://www.city.shibukawa.lg.jp/kankou/gift/omiyage/p003604.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.105286,
+          36.308617
+        ]
+      },
+      "properties": {
+        "issuer": "玉村町",
+        "card_code": null,
+        "pref": "群馬県",
+        "round": "第11弾",
+        "issued_date": "2019/12/14",
+        "facility": "【平日】玉村町水道庁舎（玉村町上下水道課）",
+        "address": "群馬県佐波郡玉村町大字上新田1116-3",
+        "facility_url": null
       }
     },
     {
@@ -20987,8 +21687,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.51059,
-          35.480701
+          139.072235,
+          36.272152
         ]
       },
       "properties": {
@@ -20997,8 +21697,8 @@
         "pref": "群馬県",
         "round": "第07弾",
         "issued_date": "2018/04/28",
-        "facility": "群馬県藤岡市中1131-8",
-        "address": "道の駅ららん藤岡 藤岡市観光案内所",
+        "facility": "道の駅ららん藤岡 藤岡市観光案内所",
+        "address": "群馬県藤岡市中1131-8",
         "facility_url": "http://www.laranfujioka.com/"
       }
     },
@@ -21040,6 +21740,26 @@
         "facility": "【通常】シンボルタワー 未来MiRAi",
         "address": "群馬県邑楽郡邑楽町大字中野2639番地1",
         "facility_url": "https://www.town.ora.gunma.jp/orabiyori/050/010/symbol-tower.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.551544,
+          36.241825
+        ]
+      },
+      "properties": {
+        "issuer": "館林市",
+        "card_code": null,
+        "pref": "群馬県",
+        "round": "第03弾",
+        "issued_date": "2016/12/01",
+        "facility": "つつじが岡ふれあいセンター",
+        "address": "群馬県館林市花山町3181",
+        "facility_url": "https://www.city.tatebayashi.gunma.jp/s061/map/010/20201027183513.html"
       }
     },
     {
@@ -21740,6 +22460,26 @@
         "facility": "道の駅グランテラス筑西総合案内所",
         "address": "茨城県筑西市川澄1850",
         "facility_url": "https://granterrace-chikusei.com/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.879578,
+          36.303921
+        ]
+      },
+      "properties": {
+        "issuer": "結城市",
+        "card_code": null,
+        "pref": "茨城県",
+        "round": "第09弾",
+        "issued_date": "2018/12/14",
+        "facility": "【木曜日以外】結城蔵美館",
+        "address": "茨城県結城市大字結城1330",
+        "facility_url": "http://www.city.yuki.lg.jp/page/page000264.html"
       }
     },
     {
@@ -22667,8 +23407,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.990112,
-          36.338661
+          138.440567,
+          36.922775
         ]
       },
       "properties": {
@@ -22678,7 +23418,7 @@
         "round": "第12弾",
         "issued_date": "2020/04/25",
         "facility": "岡谷蚕糸博物館",
-        "address": "⻑野県岡谷市幸町8-1 市役所庁舎4階",
+        "address": "長野県⻑野県岡谷市幸町8-1 市役所庁舎4階",
         "facility_url": "http://silkfact.jp/"
       }
     },
@@ -22947,8 +23687,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.114914,
-          36.530811
+          138.22316,
+          36.611031
         ]
       },
       "properties": {
@@ -22957,8 +23697,8 @@
         "pref": "長野県",
         "round": "第11弾",
         "issued_date": "2019/12/14",
-        "facility": "長野県長野市真島町川合1060-1",
-        "address": "千曲川流域下水道事務所上流処理区終末処理場",
+        "facility": "千曲川流域下水道事務所上流処理区終末処理場",
+        "address": "長野県長野市真島町川合1060-1",
         "facility_url": "https://www.pref.nagano.lg.jp/chikumagawaryuiki/index.html"
       }
     },
@@ -23327,8 +24067,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.51059,
-          35.480701
+          138.95105,
+          34.674786
         ]
       },
       "properties": {
@@ -23337,8 +24077,8 @@
         "pref": "静岡県",
         "round": "第20弾",
         "issued_date": "2023/07/28",
-        "facility": "下田市外が岡1-1",
-        "address": "道の駅開国下田みなと（２Ｆ下田市観光協会事務局）",
+        "facility": "道の駅開国下田みなと（２Ｆ下田市観光協会事務局）",
+        "address": "静岡県下田市外が岡1-1",
         "facility_url": "https://www.kaikokushimodaminato.co.jp/"
       }
     },
@@ -23959,6 +24699,26 @@
         "issued_date": "2018/04/28",
         "facility": "さぬき市役所建設経済部　下水道課",
         "address": "香川県さぬき市志度5385番地8　本庁舎2階",
+        "facility_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.819153,
+          34.146702
+        ]
+      },
+      "properties": {
+        "issuer": "まんのう町",
+        "card_code": null,
+        "pref": "香川県",
+        "round": "第11弾",
+        "issued_date": "2019/12/14",
+        "facility": "道の駅「空の夢もみの木パーク」",
+        "address": "香川県まんのう町追上424番地1",
         "facility_url": null
       }
     },
@@ -24707,8 +25467,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.51059,
-          35.480701
+          133.652802,
+          35.494026
         ]
       },
       "properties": {
@@ -24717,8 +25477,8 @@
         "pref": "鳥取県",
         "round": "第07弾",
         "issued_date": "2018/04/28",
-        "facility": "鳥取県東伯郡琴浦町別所1030-1",
-        "address": "道の駅 琴の浦 琴浦町観光協会",
+        "facility": "道の駅 琴の浦 琴浦町観光協会",
+        "address": "鳥取県東伯郡琴浦町別所1030-1",
         "facility_url": "http://www.kotoura-kankou.com/"
       }
     },
@@ -25060,6 +25820,26 @@
         "facility": "鹿児島市水道局本庁舎",
         "address": "鹿児島県鹿児島市鴨池新町1-10",
         "facility_url": "http://www.city.kagoshima.lg.jp/suidou/index.html"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.547089,
+          31.583998
+        ]
+      },
+      "properties": {
+        "issuer": "鹿児島市",
+        "card_code": "B001",
+        "pref": "鹿児島県",
+        "round": "第12弾",
+        "issued_date": "2020/04/25",
+        "facility": "観光交流センター",
+        "address": "鹿児島県鹿児島市上之園町１－１",
+        "facility_url": "https://www.city.kagoshima.lg.jp/kanshin/shisetsu/kanko/005.html"
       }
     },
     {

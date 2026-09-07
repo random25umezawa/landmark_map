@@ -35,9 +35,18 @@ PREFECTURES = {
 }
 
 NOISE_LINE_RE = re.compile(r"^(電話|ＴＥＬ|TEL|Tel|FAX|※|\(問合せ|（問合せ|問合せ先)")
-ADDRESS_HINT_RE = re.compile(r"[都道府県].+[市区町村郡]")
-# 都道府県名を省略した住所行のフォールバック検出用(市区町村+丁目・番地の数字パターン)
-FALLBACK_ADDRESS_RE = re.compile(r"[市区町村郡].*\d+-\d+")
+PREF_NAMES = list(PREFECTURES.values())
+MUNI_SUFFIX_RE = re.compile(r"[市区町村郡]")
+# 「2階」のような階数表記だけの数字は住所の決め手にならないため、階数に直結しない数字を要求する
+QUALIFYING_DIGIT_RE = re.compile(r"\d(?!\s*階)")
+
+
+def _has_pref_name(line: str) -> bool:
+    return any(p in line for p in PREF_NAMES)
+
+
+def _looks_like_address(line: str) -> bool:
+    return bool(MUNI_SUFFIX_RE.search(line)) and bool(QUALIFYING_DIGIT_RE.search(line))
 
 
 def fetch_prefecture_html(pref_code: str) -> str:
@@ -59,10 +68,12 @@ def parse_distribution_cell(cell: Tag, pref_name: str) -> tuple[str | None, str 
     facility_name = link.get_text(strip=True) if link else lines[0]
     other_lines = [line for line in lines if line != facility_name]
 
-    address = next((line for line in lines if ADDRESS_HINT_RE.search(line)), None)
+    # 都道府県の正式名称を含み、かつ番地らしい数字を伴う行を最優先で住所とみなす
+    address = next((line for line in lines if _has_pref_name(line) and _looks_like_address(line)), None)
     if address is None:
-        address = next((line for line in other_lines if FALLBACK_ADDRESS_RE.search(line)), None)
-        if address and not address.startswith(pref_name):
+        # 都道府県名が省略されている場合のフォールバック(ページの都道府県名を補う)
+        address = next((line for line in other_lines if _looks_like_address(line)), None)
+        if address and not _has_pref_name(address):
             address = f"{pref_name}{address}"
 
     if facility_name == address:
