@@ -77,9 +77,8 @@ html, body {
 }
 
 .layer-row .swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 12px;
+  height: 12px;
   display: inline-block;
   flex: none;
 }
@@ -212,7 +211,7 @@ html, body {
   height: 10px;
   border-radius: 50%;
   background: #999;
-  box-shadow: 0 0 0 4px #ffd600;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 6px #ffd600;
 }
 
 #attribution-footer {

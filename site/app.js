@@ -96,8 +96,15 @@ map.on("load", async () => {
   initBasemapOpacity();
 });
 
+// 手動補完(金色の丸)・白い縁取り・本体アイコンの3層構造でサイズを揃えるための計算
+function iconSize(size) {
+  return size / ICON_SIZE;
+}
+function outlineIconSize(size) {
+  return (size + 4) / ICON_SIZE; // 本体の周囲に2pxずつ白い縁取り
+}
 function haloRadius(size) {
-  return size / 2 + 4;
+  return size / 2 + 8; // 白い縁取りのさらに外側に金色の丸がのぞく大きさ
 }
 
 function addLayer(def, data) {
@@ -118,13 +125,29 @@ function addLayer(def, data) {
     },
   });
 
+  // 本体より一回り大きい白いアイコンを下敷きにし、白い縁取りに見せる
+  map.addLayer({
+    id: def.id + "-outline",
+    type: "symbol",
+    source: def.id,
+    layout: {
+      "icon-image": def.style.shape,
+      "icon-size": outlineIconSize(def.style.size),
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+    },
+    paint: {
+      "icon-color": "#ffffff",
+    },
+  });
+
   map.addLayer({
     id: def.id,
     type: "symbol",
     source: def.id,
     layout: {
       "icon-image": def.style.shape,
-      "icon-size": def.style.size / ICON_SIZE,
+      "icon-size": iconSize(def.style.size),
       "icon-allow-overlap": true,
       "icon-ignore-placement": true,
     },
@@ -135,10 +158,13 @@ function addLayer(def, data) {
 
   map.on("click", def.id, (e) => {
     const props = e.features[0].properties;
-    new maplibregl.Popup({ maxWidth: "320px" })
+    const popup = new maplibregl.Popup({ maxWidth: "320px" })
       .setLngLat(e.lngLat)
       .setHTML(buildPopupHtml(def, props))
       .addTo(map);
+    // 詳細画面はそのレイヤーに設定されている色で縁取りする
+    const content = popup.getElement().querySelector(".maplibregl-popup-content");
+    if (content) content.style.border = `3px solid ${def.style.color}`;
   });
 
   map.on("mouseenter", def.id, () => (map.getCanvas().style.cursor = "pointer"));
@@ -147,8 +173,10 @@ function addLayer(def, data) {
 
 function applyLayerStyle(def) {
   map.setLayoutProperty(def.id, "icon-image", def.style.shape);
-  map.setLayoutProperty(def.id, "icon-size", def.style.size / ICON_SIZE);
+  map.setLayoutProperty(def.id, "icon-size", iconSize(def.style.size));
   map.setPaintProperty(def.id, "icon-color", def.style.color);
+  map.setLayoutProperty(def.id + "-outline", "icon-image", def.style.shape);
+  map.setLayoutProperty(def.id + "-outline", "icon-size", outlineIconSize(def.style.size));
   map.setPaintProperty(def.id + "-halo", "circle-radius", haloRadius(def.style.size));
 }
 
@@ -211,14 +239,15 @@ function buildPopupHtml(def, props) {
 
   if (cfg.url) {
     const urls = coerceValue(props[cfg.url]);
-    (Array.isArray(urls) ? urls : urls ? [urls] : []).forEach((u) => {
-      if (!u) return;
+    // 複数URLがある場合も先頭(公式ホームページ)の1件だけ表示する
+    const url = Array.isArray(urls) ? urls[0] : urls;
+    if (url) {
       parts.push(
-        `<div class="popup-url"><a href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
-          u
+        `<div class="popup-url"><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+          url
         )}</a></div>`
       );
-    });
+    }
   }
 
   (cfg.extra || []).forEach(({ key, label }) => {
@@ -233,6 +262,19 @@ function buildPopupHtml(def, props) {
 }
 
 // ---- 左上パネル ----
+
+// 凡例のスワッチに現在の色・形設定を反映する
+const SWATCH_CLIP_PATH = {
+  circle: "circle(50% at 50% 50%)",
+  square: "inset(10%)",
+  triangle: "polygon(50% 0%, 100% 100%, 0% 100%)",
+  diamond: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+};
+
+function applySwatchStyle(swatch, style) {
+  swatch.style.background = style.color;
+  swatch.style.clipPath = SWATCH_CLIP_PATH[style.shape] || SWATCH_CLIP_PATH.circle;
+}
 
 function buildPanel() {
   const list = document.getElementById("layer-list");
@@ -249,12 +291,13 @@ function buildPanel() {
     checkbox.addEventListener("change", () => {
       const visibility = checkbox.checked ? "visible" : "none";
       map.setLayoutProperty(def.id, "visibility", visibility);
+      map.setLayoutProperty(def.id + "-outline", "visibility", visibility);
       map.setLayoutProperty(def.id + "-halo", "visibility", visibility);
     });
 
     const swatch = document.createElement("span");
     swatch.className = "swatch";
-    swatch.style.background = def.style.color;
+    applySwatchStyle(swatch, def.style);
 
     const label = document.createElement("span");
     label.className = "layer-label";
@@ -296,8 +339,8 @@ function buildLayerSettings(def, swatch) {
   colorInput.type = "color";
   colorInput.value = def.style.color;
   colorInput.addEventListener("input", () => {
-    swatch.style.background = colorInput.value;
     updateLayerStyle(def, { color: colorInput.value });
+    applySwatchStyle(swatch, def.style);
   });
   colorLabel.appendChild(colorInput);
 
@@ -313,6 +356,7 @@ function buildLayerSettings(def, swatch) {
   });
   shapeSelect.addEventListener("change", () => {
     updateLayerStyle(def, { shape: shapeSelect.value });
+    applySwatchStyle(swatch, def.style);
   });
   shapeLabel.appendChild(shapeSelect);
 
