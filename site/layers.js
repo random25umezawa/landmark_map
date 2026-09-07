@@ -6,4 +6,5 @@ const LAYER_DEFS = [
   { id: "dam-card", label: "ダムカード", file: "../data/dam-card.geojson", color: "#00838f" },
   { id: "kokudo-sticker", label: "国道ステッカー", file: "../data/kokudo-sticker.geojson", color: "#ef6c00" },
   { id: "genpyo", label: "道路元標", file: "../data/genpyo.geojson", color: "#5d4037" },
+  { id: "rvpark", label: "RVパーク", file: "../data/rvpark.geojson", color: "#ad1457" },
 ];
