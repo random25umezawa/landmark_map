@@ -1,0 +1,594 @@
+{
+  "宗谷岬 日本最北端到達証明書(北海道)": {
+    "address": "北海道稚内市宗谷岬",
+    "pref": "北海道",
+    "issuer": "稚内市役所・観光案内所",
+    "confidence": "official",
+    "note": "日本本土四極踏破証明書の一つ。無料。宗谷岬周辺の土産店独自版(有料)も存在",
+    "source_url": "https://www.city.wakkanai.hokkaido.jp/faq/89.html"
+  },
+  "納沙布岬 本土最東端到達証明書(北海道)": {
+    "address": "北海道根室市納沙布",
+    "pref": "北海道",
+    "issuer": "根室市役所・北方領土資料館",
+    "confidence": "official",
+    "note": "日本本土四極踏破証明書の一つ",
+    "source_url": "https://www.city.nemuro.hokkaido.jp/"
+  },
+  "佐多岬 本土最南端到達証明書(鹿児島県)": {
+    "address": "鹿児島県肝属郡南大隅町佐多岬",
+    "pref": "鹿児島県",
+    "issuer": "南大隅町・佐多岬観光案内所",
+    "confidence": "official",
+    "note": "日本本土四極踏破証明書の一つ",
+    "source_url": "https://minamiosumi-tourism.com/certificate/"
+  },
+  "神崎鼻 本土最西端到達証明書(長崎県)": {
+    "address": "長崎県佐世保市小佐々町神崎",
+    "pref": "長崎県",
+    "issuer": "佐世保市",
+    "confidence": "official",
+    "note": "日本本土四極踏破証明書の一つ。複数窓口・メール申請対応",
+    "source_url": "https://www.city.sasebo.lg.jp/keizai/kankou/saiseitansyoumeisyo.html"
+  },
+  "与那国島 日本最西端到達証明書(沖縄県)": {
+    "address": "沖縄県八重山郡与那国町字与那国(西崎)",
+    "pref": "沖縄県",
+    "issuer": "与那国町観光協会",
+    "confidence": "official",
+    "note": "",
+    "source_url": "https://welcome-yonaguni.jp/news/2836/"
+  },
+  "大間崎 本州最北端到達証明書(青森県)": {
+    "address": "青森県下北郡大間町大間大間平",
+    "pref": "青森県",
+    "issuer": "大間町観光協会",
+    "confidence": "official",
+    "note": "出典サイトはAIクローラーをrobots.txtでブロックしているため自動フェッチ未実施",
+    "source_url": "https://oma-wide.net/touchakukinen/"
+  },
+  "潮岬 本州最南端到達証明書(和歌山県)": {
+    "address": "和歌山県東牟婁郡串本町潮岬",
+    "pref": "和歌山県",
+    "issuer": "串本町観光協会・潮岬観光タワー",
+    "confidence": "official",
+    "note": "",
+    "source_url": "https://kankou-kushimoto.jp/archives/5959"
+  },
+  "毘沙ノ鼻 本州最西端到達証明書(山口県)": {
+    "address": "山口県下関市安岡町(毘沙ノ鼻)",
+    "pref": "山口県",
+    "issuer": "下関市・JR下関駅観光案内所",
+    "confidence": "official",
+    "note": "",
+    "source_url": ""
+  },
+  "魹ヶ崎 本州最東端到達証明書(岩手県)": {
+    "address": "岩手県宮古市日立浜町(浄土ヶ浜)",
+    "pref": "岩手県",
+    "issuer": "浄土ヶ浜レストハウス",
+    "confidence": "official",
+    "note": "本州四端踏破ラリー関連。事務局は下関市",
+    "source_url": "https://www.city.shimonoseki.lg.jp/site/honshu-yontan/1019.html"
+  },
+  "地球33番地(高知県)": {
+    "address": "高知県高知市浦戸",
+    "pref": "高知県",
+    "issuer": "オープンハート",
+    "confidence": "official",
+    "note": "東経133度33分・北緯33度33分の地",
+    "source_url": ""
+  },
+  "能登半島最北端到達証明書(石川県)": {
+    "address": "石川県珠洲市狼煙町(道の駅狼煙)",
+    "pref": "石川県",
+    "issuer": "狼煙郵便局・道の駅狼煙",
+    "confidence": "official",
+    "note": "",
+    "source_url": ""
+  },
+  "日本のへそ到達証明書(兵庫県)": {
+    "address": "兵庫県西脇市上比延町(にしわき経緯度地球科学館テラ・ドーム)",
+    "pref": "兵庫県",
+    "issuer": "にしわき経緯度地球科学館テラ・ドーム(西脇市観光物産協会)",
+    "confidence": "official",
+    "note": "東経135度・北緯35度の交点",
+    "source_url": "https://www.nishiwaki-kanko.jp/hesoreach/"
+  },
+  "日本標準時子午線通過記念証(兵庫県)": {
+    "address": "兵庫県明石市人丸町2-6(明石市立天文科学館)",
+    "pref": "兵庫県",
+    "issuer": "明石市立天文科学館",
+    "confidence": "official",
+    "note": "",
+    "source_url": ""
+  },
+  "日本国登頂証明書(新潟県/山形県)": {
+    "address": "新潟県村上市大毎(日本国・田宮彦作商店)",
+    "pref": "新潟県",
+    "issuer": "田宮彦作商店",
+    "confidence": "official",
+    "note": "標高555m「日本国」山。新潟県村上市・山形県鶴岡市境",
+    "source_url": "https://www.pref.niigata.lg.jp/sec/murakami_kikaku/1356756119977.html"
+  },
+  "日和山 登頂証明書(宮城県)": {
+    "address": "宮城県仙台市宮城野区南蒲生(日和山)",
+    "pref": "宮城県",
+    "issuer": "高砂市民センター",
+    "confidence": "official",
+    "note": "日本一低い山(標高3m)",
+    "source_url": "https://sendai311-memorial.jp/event/hiyoriyama_touchou/"
+  },
+  "天保山 登山証明書(大阪府)": {
+    "address": "大阪府大阪市港区築港(天保山)",
+    "pref": "大阪府",
+    "issuer": "天保山山岳会",
+    "confidence": "official",
+    "note": "二等三角点。大阪五低山の一つ",
+    "source_url": ""
+  },
+  "蘇鉄山 登山証明書(大阪府)": {
+    "address": "大阪府堺市堺区大浜北町(蘇鉄山・神明神社)",
+    "pref": "大阪府",
+    "issuer": "神明神社",
+    "confidence": "official",
+    "note": "一等三角点のある山として日本一低い(標高6.97m)",
+    "source_url": ""
+  },
+  "弁天山 登山証明書(徳島県)": {
+    "address": "徳島県徳島市方上町(弁天山)",
+    "pref": "徳島県",
+    "issuer": "近隣店舗(中華そば チーアン)",
+    "confidence": "official",
+    "note": "国土地理院地図に山として掲載される最低峰(標高6.1m)",
+    "source_url": ""
+  },
+  "北方領土隣接地域到達証明書(根室市・北方館)": {
+    "address": "北海道根室市納沙布(北方館・望郷の家)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書。根室管内22カ所で発行",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "北方領土隣接地域到達証明書(根室市・JR根室駅)": {
+    "address": "北海道根室市琴平町(JR根室駅)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "北方領土隣接地域到達証明書(根室市・歴史と自然の資料館)": {
+    "address": "北海道根室市穂香(根室市歴史と自然の資料館)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "北方領土隣接地域到達証明書(別海町)": {
+    "address": "北海道野付郡別海町野付(野付半島ネイチャーセンター)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書。町内3カ所のうち1カ所",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "北方領土隣接地域到達証明書(中標津町)": {
+    "address": "北海道標津郡中標津町俣落(開陽台)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書。町内4カ所のうち1カ所",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "北方領土隣接地域到達証明書(標津町)": {
+    "address": "北海道標津郡標津町北15条西(標津サーモン科学館)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書。町内3カ所のうち1カ所",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "北方領土隣接地域到達証明書(羅臼町)": {
+    "address": "北海道目梨郡羅臼町本町(道の駅知床・らうす)",
+    "pref": "北海道",
+    "issuer": "根室振興局",
+    "confidence": "official",
+    "note": "デジタル版到達証明書。町内4カ所のうち1カ所",
+    "source_url": "https://www.nemuro.pref.hokkaido.lg.jp/ts/hrt/215058.html"
+  },
+  "渋峠 日本国道最高地点到達証明書(群馬県/長野県)": {
+    "address": "長野県下高井郡山ノ内町平穏渋峠",
+    "pref": "長野県",
+    "issuer": "渋峠ホテル",
+    "confidence": "official",
+    "note": "国道最高地点(標高2172m)。群馬県・長野県境",
+    "source_url": ""
+  },
+  "関門トンネル人道到達証明書(山口県/福岡県)": {
+    "address": "山口県下関市みもすそ川町(関門トンネル人道入口)",
+    "pref": "山口県",
+    "issuer": "下関市・北九州市",
+    "confidence": "official",
+    "note": "福岡県北九州市門司区側にも入口あり",
+    "source_url": ""
+  },
+  "海岸線から一番遠い地点到達認定証(長野県)": {
+    "address": "長野県佐久市田口",
+    "pref": "長野県",
+    "issuer": "佐久市観光協会",
+    "confidence": "official",
+    "note": "",
+    "source_url": ""
+  },
+  "蜃気楼の証(富山県)": {
+    "address": "富山県魚津市釈迦堂(魚津埋没林博物館)",
+    "pref": "富山県",
+    "issuer": "魚津埋没林博物館",
+    "confidence": "official",
+    "note": "",
+    "source_url": ""
+  },
+  "白い恋人プロポーズ証明書(北海道)": {
+    "address": "北海道利尻郡利尻富士町鴛泊(沼浦展望台観光案内所)",
+    "pref": "北海道",
+    "issuer": "沼浦展望台観光案内所",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "小幌駅 秘境到達証明書(北海道)": {
+    "address": "北海道虻田郡豊浦町字礼文華(小幌駅)",
+    "pref": "北海道",
+    "issuer": "道の駅とようら・天然豊浦温泉しおさい",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "カッパ捕獲許可証(岩手県)": {
+    "address": "岩手県遠野市新穀町(遠野市観光協会)",
+    "pref": "岩手県",
+    "issuer": "遠野市観光協会",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "美人証明(栃木県)": {
+    "address": "栃木県足利市伊勢町(足利市観光協会)",
+    "pref": "栃木県",
+    "issuer": "足利市観光協会",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "モエレ山登頂証明書(北海道)": {
+    "address": "北海道札幌市東区モエレ沼公園1-1",
+    "pref": "北海道",
+    "issuer": "モエレ沼公園売店",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "さっぽろテレビ塔 階段のぼり達成証明書(北海道)": {
+    "address": "北海道札幌市中央区大通西1丁目(さっぽろテレビ塔)",
+    "pref": "北海道",
+    "issuer": "さっぽろテレビ塔",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "終着駅到達証明書(北海道)": {
+    "address": "北海道樺戸郡新十津川町字北町(新十津川駅)",
+    "pref": "北海道",
+    "issuer": "新十津川駅観光案内所",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "えりも岬到達証明書(北海道)": {
+    "address": "北海道幌泉郡えりも町字えりも岬",
+    "pref": "北海道",
+    "issuer": "えりも岬観光センター・各土産店",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "極寒体験証明書(北海道)": {
+    "address": "北海道旭川市宮下通8丁目(旭川観光物産情報センター)",
+    "pref": "北海道",
+    "issuer": "旭川観光物産情報センター",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "日本最北の料金所到達証明書(北海道)": {
+    "address": "北海道上川郡剣淵町(士別剣淵IC本線料金所)",
+    "pref": "北海道",
+    "issuer": "士別剣淵本線料金所事務室",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "来駅証明書(北海道・JR稚内駅)": {
+    "address": "北海道稚内市中央(JR稚内駅)",
+    "pref": "北海道",
+    "issuer": "JR稚内駅",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "海霧多発地到達体験証明書(北海道)": {
+    "address": "北海道厚岸郡浜中町湯沸(霧多布岬キャンプ場)",
+    "pref": "北海道",
+    "issuer": "霧多布岬キャンプ場",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "最東端駅東根室到着証明書(北海道)": {
+    "address": "北海道根室市琴平町(根室市観光インフォメーションセンター)",
+    "pref": "北海道",
+    "issuer": "根室市観光インフォメーションセンター",
+    "confidence": "unconfirmed",
+    "note": "東根室駅は日本最東端の鉄道駅。情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "指パク体験証明書(北海道)": {
+    "address": "北海道標津郡標津町北15条西(標津サーモン科学館)",
+    "pref": "北海道",
+    "issuer": "標津サーモン科学館",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "日本最北東端SS給油証明書(北海道)": {
+    "address": "北海道目梨郡羅臼町(羅臼アポロ石油 出光羅臼SS)",
+    "pref": "北海道",
+    "issuer": "羅臼アポロ石油",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://tokukita.jp/certificate/hokkaido-arrival-certificate.html"
+  },
+  "六甲全山縦走大会走破認定証(兵庫県)": {
+    "address": "兵庫県神戸市(六甲山系縦走路)",
+    "pref": "兵庫県",
+    "issuer": "六甲全山縦走大会事務局",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/kansai-certificate"
+  },
+  "唐船山登山証明書(兵庫県)": {
+    "address": "兵庫県赤穂市御崎(赤穂海浜公園オートキャンプ場)",
+    "pref": "兵庫県",
+    "issuer": "赤穂海浜公園オートキャンプ場",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/kansai-certificate"
+  },
+  "一滴亭入館証明書(兵庫県)": {
+    "address": "兵庫県美方郡香美町香住区余部(道の駅あまるべ)",
+    "pref": "兵庫県",
+    "issuer": "道の駅あまるべ隣接鉄道記念館",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/kansai-certificate"
+  },
+  "通天閣スカイウォーク体験認定証(大阪府)": {
+    "address": "大阪府大阪市浪速区恵美須東1丁目(通天閣)",
+    "pref": "大阪府",
+    "issuer": "通天閣",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/kansai-certificate"
+  },
+  "伊吹山山頂登頂証明書(滋賀県)": {
+    "address": "滋賀県米原市上野(伊吹山山頂・対山館)",
+    "pref": "滋賀県",
+    "issuer": "伊吹山山頂・対山館",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/kansai-certificate"
+  },
+  "日本唯一飛び地の村訪問証明書(和歌山県)": {
+    "address": "和歌山県東牟婁郡北山村(道の駅おくとろ)",
+    "pref": "和歌山県",
+    "issuer": "北山村役場・道の駅",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/kansai-certificate"
+  },
+  "青函トンネル坑道体験証明書(青森県)": {
+    "address": "青森県東津軽郡外ヶ浜町三厩龍浜(青函トンネル記念館)",
+    "pref": "青森県",
+    "issuer": "青函トンネル記念館",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "尻屋崎到達記念ステッカー(青森県)": {
+    "address": "青森県下北郡東通村尻屋(尻屋崎)",
+    "pref": "青森県",
+    "issuer": "尻屋崎周辺土産店",
+    "confidence": "unconfirmed",
+    "note": "証明書ではなくステッカーとの情報あり。情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "横手山登頂証明書(長野県)": {
+    "address": "長野県下高井郡山ノ内町平穏横手山(横手山レストハウス)",
+    "pref": "長野県",
+    "issuer": "横手山レストハウス",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "白馬岳登頂認定証(長野県)": {
+    "address": "長野県北安曇郡白馬村(白馬岳山頂レストハウス)",
+    "pref": "長野県",
+    "issuer": "白馬岳山頂レストハウス",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "立山連峰越え通行証明書(富山県)": {
+    "address": "富山県中新川郡立山町芦峅寺(立山山頂簡易郵便局)",
+    "pref": "富山県",
+    "issuer": "立山山頂簡易郵便局",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "朝日感動証明書(富山県)": {
+    "address": "富山県氷見市新湊(氷見市観光協会)",
+    "pref": "富山県",
+    "issuer": "氷見市観光協会",
+    "confidence": "unconfirmed",
+    "note": "情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://3cars3.kaoridondon.net/tohoku-kanto-certificate"
+  },
+  "たびら平戸口駅 日本最西端の駅訪問証明書(長崎県)": {
+    "address": "長崎県平戸市田平町山内免(たびら平戸口駅)",
+    "pref": "長崎県",
+    "issuer": "松浦鉄道 たびら平戸口駅",
+    "confidence": "unconfirmed",
+    "note": "普通鉄道における日本最西端の駅。300円ではがきサイズの証明書を発行。情報源: 複数ブログ・観光協会サイト",
+    "source_url": "https://www.hirado-net.com/access/traffic09/"
+  },
+  "西大山駅 JR日本最南端の駅到着証明(鹿児島県)": {
+    "address": "鹿児島県指宿市山川大山(西大山駅)",
+    "pref": "鹿児島県",
+    "issuer": "中園久太郎商店(かいもん市場久太郎)",
+    "confidence": "unconfirmed",
+    "note": "JRの駅としては日本最南端。110円で発行。情報源: 複数ブログ",
+    "source_url": "https://www.sasu-rider.com/bike-tabi/tabi-iroha/toutatsu-shoumeisho"
+  },
+  "生月島 日本本土最西北端の島到達証明書(長崎県)": {
+    "address": "長崎県平戸市生月町南免(道の駅生月大橋)",
+    "pref": "長崎県",
+    "issuer": "道の駅 生月大橋",
+    "confidence": "unconfirmed",
+    "note": "100円で発行。情報源: まとめブログ",
+    "source_url": "https://www.sasu-rider.com/bike-tabi/tabi-iroha/toutatsu-shoumeisho"
+  },
+  "波照間島 日本最南端の証(沖縄県)": {
+    "address": "沖縄県八重山郡竹富町字波照間",
+    "pref": "沖縄県",
+    "issuer": "竹富町観光協会",
+    "confidence": "unconfirmed",
+    "note": "一般人が到達できる日本最南端の有人島。1,000円(税込)。波照間島の商店・宿泊施設や石垣島の竹富町観光協会事務局でも購入可",
+    "source_url": "https://painusima.com/certificate/"
+  },
+  "西表島到着記念証(沖縄県)": {
+    "address": "沖縄県八重山郡竹富町字上原(西表島)",
+    "pref": "沖縄県",
+    "issuer": "西表財団",
+    "confidence": "unconfirmed",
+    "note": "世界自然遺産西表島。1,000円(税込)。到着日スタンプ押印可",
+    "source_url": "https://painusima.com/certificate/"
+  },
+  "聖天山登頂証明書(大阪府)": {
+    "address": "大阪府大阪市阿倍野区松虫通(聖天山)",
+    "pref": "大阪府",
+    "issuer": "大阪五低山関連団体",
+    "confidence": "unconfirmed",
+    "note": "大阪五低山の一つ。情報源: まとめブログ",
+    "source_url": "https://note.com/kimisa0504/n/n205e12e39c66"
+  },
+  "帝塚山登頂証明書(大阪府)": {
+    "address": "大阪府大阪市住吉区帝塚山(帝塚山)",
+    "pref": "大阪府",
+    "issuer": "大阪五低山関連団体",
+    "confidence": "unconfirmed",
+    "note": "大阪五低山の一つ。情報源: まとめブログ",
+    "source_url": "https://note.com/kimisa0504/n/n205e12e39c66"
+  },
+  "茶臼山登頂証明書(大阪府)": {
+    "address": "大阪府大阪市天王寺区茶臼山町(茶臼山)",
+    "pref": "大阪府",
+    "issuer": "茶臼山公園",
+    "confidence": "unconfirmed",
+    "note": "大阪五低山の一つ、標高26m。100円で発行。情報源: まとめブログ",
+    "source_url": "https://note.com/kimisa0504/n/n205e12e39c66"
+  },
+  "富士山登頂証明書(静岡県/山梨県)": {
+    "address": "静岡県富士宮市富士山頂",
+    "pref": "静岡県",
+    "issuer": "日本富士山協会",
+    "confidence": "unconfirmed",
+    "note": "本人登頂の写真を添えオンライン申請(1,100円)。来訪記念状は550円。公式団体発行だが登山口窓口での即時発行ではないためunconfirmedとした",
+    "source_url": "https://www.fujisan-kyokai.jp/certificate"
+  },
+  "佐田岬 四国最西端到達証明書(愛媛県)": {
+    "address": "愛媛県西宇和郡伊方町三崎1700-11(佐田岬はなはな観光案内所)",
+    "pref": "愛媛県",
+    "issuer": "一般社団法人佐田岬観光公社",
+    "confidence": "official",
+    "note": "300円。佐田岬はなはな観光案内所または道の駅きらら館で購入可、郵送対応可。四国四端踏破ラリーの西端地点",
+    "source_url": "https://www.sadamisaki.com/info/%E5%9B%9B%E5%9B%BD%E6%9C%80%E8%A5%BF%E7%AB%AF%E5%88%B0%E9%81%94%E8%A8%BC%E6%98%8E%E6%9B%B8-%E8%B3%BC%E5%85%A5%E5%A0%B4%E6%89%80%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/"
+  },
+  "大山登頂証(鳥取県)": {
+    "address": "鳥取県西伯郡大山町大山45-5 KOMOREBITO 1F(大山町観光案内所)",
+    "pref": "鳥取県",
+    "issuer": "大山町観光案内所",
+    "confidence": "official",
+    "note": "鳥取県産杉材の木製「登頂証」。1000円(焼印付きは+200円)、登山日・氏名を記入可。中国地方最高峰の登頂記念",
+    "source_url": "https://tourismdaisen.com/info/news/toutyousyou/"
+  },
+  "剣山 登拝証明之書(徳島県)": {
+    "address": "徳島県三好市東祖谷(剣山山頂・剣山本宮宝蔵石神社)",
+    "pref": "徳島県",
+    "issuer": "剣山本宮宝蔵石神社",
+    "confidence": "official",
+    "note": "木製絵馬形式の「登拝証明之書」を通年発行、1000円。徳島県最高峰(1955m)山頂の神社授与所(開所時間内)で入手",
+    "source_url": "https://www.tsurugisan.jp/"
+  },
+  "鶴御崎 九州本土最東端到達証明書(大分県)": {
+    "address": "大分県佐伯市駅前2-6-37(佐伯市観光案内所)",
+    "pref": "大分県",
+    "issuer": "佐伯市観光案内所",
+    "confidence": "official",
+    "note": "200円、写真版・イラスト版の2種。鶴御崎(佐伯市鶴見大字地松浦)訪問を示す写真の提示が必要",
+    "source_url": "https://www.visit-saiki.jp/spots/detail/1b5b9a90-1dd6-4087-8786-878f02805350"
+  },
+  "門司港 九州最北端踏破認印(福岡県)": {
+    "address": "福岡県北九州市門司区港町(門司港レトロ、ノーフォーク広場付近)",
+    "pref": "福岡県",
+    "issuer": "北九州市(門司港駅観光案内所・小倉駅総合観光案内所)",
+    "confidence": "official",
+    "note": "2025年設置の記念碑と自分が写った写真を提示すると無料で「九州最北端踏破認印」を押印。本州最西端・毘沙ノ鼻とセットで「関門二極踏破証明書」がメール取得可能",
+    "source_url": "https://www.city.kitakyushu.lg.jp/contents/11100164.html"
+  },
+  "巌流島上陸認定証(山口県)": {
+    "address": "山口県下関市大字彦島字巌流島(唐戸桟橋 関門汽船発券所)",
+    "pref": "山口県",
+    "issuer": "下関観光コンベンション協会・関門汽船",
+    "confidence": "official",
+    "note": "100円。唐戸桟橋の関門汽船発券所で購入すると自宅に郵送、または協会窓口でも購入可",
+    "source_url": "https://www.stca-kanko.or.jp/campaign/"
+  },
+  "足摺岬 四国最南端到達証明書(高知県)": {
+    "address": "高知県土佐清水市足摺岬(足摺岬観光案内所)",
+    "pref": "高知県",
+    "issuer": "足摺岬観光案内所",
+    "confidence": "unconfirmed",
+    "note": "ブログ情報によれば窓口に申し出ると発行してもらえるが常設配布か未確認。四国四端踏破ラリーの南端地点。情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://ameblo.jp/tabi-kingyo/entry-12844586765.html"
+  },
+  "蒲生田岬 四国最東端証明書(徳島県)": {
+    "address": "徳島県阿南市椿町蒲生田(かもだ岬温泉)",
+    "pref": "徳島県",
+    "issuer": "かもだ岬温泉",
+    "confidence": "unconfirmed",
+    "note": "受付に記念スタンプ・カードが常備され自由に押せる形式で正式な発行制度ではない可能性。四国四端踏破ラリーの東端地点。情報源: まとめブログ、一次情報未確認",
+    "source_url": "https://note.com/tekuteku_noppo/n/nfad0b03f1fa3"
+  },
+  "開聞岳 登山認定証(鹿児島県)": {
+    "address": "鹿児島県指宿市開聞十町(かいもん山麓ふれあい公園 中央管理棟)",
+    "pref": "鹿児島県",
+    "issuer": "かいもん山麓ふれあい公園 中央管理棟(開聞岳ガイドクラブ協力)",
+    "confidence": "unconfirmed",
+    "note": "指宿市観光協会公式サイトに登山認定証・登山バッジ等の記念品発行の記載あり。常時発行か季節限定かは未確認",
+    "source_url": "https://www.ibusuki.or.jp/tourism/play/kaimonpark/climbing/"
+  }
+}
