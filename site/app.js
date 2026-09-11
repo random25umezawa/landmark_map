@@ -85,13 +85,29 @@ function registerShapeImages() {
   });
 }
 
+// パネルの開閉ボタンはレイヤーデータの読み込みを待たず、DOM構築後すぐに使えるようにする
+// (データ読み込みが遅い/失敗した場合でも、ボタンが無反応の空表示にならないようにするため)
+initPanelToggle();
+
 map.on("load", async () => {
   registerShapeImages();
-  for (const def of LAYER_DEFS) {
-    def.style = { ...def.style, ...loadSetting(`layerStyle.${def.id}`, {}) };
-    const data = await fetch(def.file).then((r) => r.json());
-    addLayer(def, data);
-  }
+  // 各レイヤーのGeoJSONは並行して取得する(直列だと通信が遅い環境で表示までが長くなるため)。
+  // 1件失敗しても他のレイヤーの表示やパネル構築は妨げない。
+  const loadedLayers = await Promise.all(
+    LAYER_DEFS.map(async (def) => {
+      def.style = { ...def.style, ...loadSetting(`layerStyle.${def.id}`, {}) };
+      try {
+        const data = await fetch(def.file).then((r) => r.json());
+        return { def, data };
+      } catch (err) {
+        console.error(`レイヤー読み込み失敗: ${def.id}`, err);
+        return null;
+      }
+    })
+  );
+  loadedLayers.forEach((entry) => {
+    if (entry) addLayer(entry.def, entry.data);
+  });
   buildPanel();
   initBasemapOpacity();
 });
@@ -430,6 +446,28 @@ function buildLegendNote() {
     )
     .join("");
   document.getElementById("panel").appendChild(note);
+}
+
+// ---- パネルの折りたたみ(スマホでは凡例の色・種類名だけを常時表示) ----
+function initPanelToggle() {
+  const panel = document.getElementById("panel");
+  const toggle = document.getElementById("panel-toggle");
+
+  function apply(collapsed) {
+    panel.classList.toggle("collapsed", collapsed);
+    toggle.textContent = collapsed ? "▸" : "▾";
+    toggle.title = collapsed ? "詳細設定を表示" : "凡例だけの表示に戻す";
+    toggle.setAttribute("aria-expanded", String(!collapsed));
+  }
+
+  let collapsed = loadSetting("panelCollapsed", true);
+  apply(collapsed);
+
+  toggle.addEventListener("click", () => {
+    collapsed = !collapsed;
+    apply(collapsed);
+    saveSetting("panelCollapsed", collapsed);
+  });
 }
 
 function buildAttributionFooter() {

@@ -30,9 +30,63 @@ html, body {
   overflow-x: hidden;
 }
 
+#panel.collapsed {
+  min-width: 0;
+  max-width: 170px;
+  padding: 8px 10px;
+}
+
+#panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 #panel h1 {
   font-size: 15px;
-  margin: 0 0 8px;
+  margin: 0;
+}
+
+#panel.collapsed h1 {
+  font-size: 12px;
+}
+
+#panel-toggle {
+  flex: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #666;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+#panel-toggle:hover {
+  color: #000;
+}
+
+#panel.collapsed #global-settings,
+#panel.collapsed .layer-row input[type="checkbox"],
+#panel.collapsed .layer-row .count,
+#panel.collapsed .layer-row .gear-btn,
+#panel.collapsed .layer-settings,
+#panel.collapsed #legend-note,
+#panel.collapsed #attribution-footer {
+  display: none;
+}
+
+#panel.collapsed .layer-row {
+  gap: 6px;
+  padding: 2px 0;
+  font-size: 11px;
+}
+
+#panel.collapsed .layer-row .swatch {
+  width: 9px;
+  height: 9px;
 }
 
 #global-settings {
