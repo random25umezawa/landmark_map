@@ -201,6 +201,12 @@ html, body {
   line-height: 1.4;
   color: #555;
   display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#legend-note .legend-note-item {
+  display: flex;
   align-items: center;
   gap: 6px;
 }
@@ -211,7 +217,6 @@ html, body {
   height: 10px;
   border-radius: 50%;
   background: #999;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 6px #ffd600;
 }
 
 #attribution-footer {

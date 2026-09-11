@@ -125,6 +125,21 @@ function addLayer(def, data) {
     },
   });
 
+  // レイヤー固有の条件(例: 道の駅きっぷ販売中)を満たす地点は下に敷いた色付きの丸で区別する
+  if (def.availabilityFlag) {
+    map.addLayer({
+      id: def.id + "-flag-halo",
+      type: "circle",
+      source: def.id,
+      filter: ["==", ["get", def.availabilityFlag.key], true],
+      paint: {
+        "circle-radius": haloRadius(def.style.size),
+        "circle-color": def.availabilityFlag.color,
+        "circle-opacity": 0.9,
+      },
+    });
+  }
+
   // 本体より一回り大きい白いアイコンを下敷きにし、白い縁取りに見せる
   map.addLayer({
     id: def.id + "-outline",
@@ -178,6 +193,9 @@ function applyLayerStyle(def) {
   map.setLayoutProperty(def.id + "-outline", "icon-image", def.style.shape);
   map.setLayoutProperty(def.id + "-outline", "icon-size", outlineIconSize(def.style.size));
   map.setPaintProperty(def.id + "-halo", "circle-radius", haloRadius(def.style.size));
+  if (def.availabilityFlag) {
+    map.setPaintProperty(def.id + "-flag-halo", "circle-radius", haloRadius(def.style.size));
+  }
 }
 
 function updateLayerStyle(def, patch) {
@@ -293,6 +311,9 @@ function buildPanel() {
       map.setLayoutProperty(def.id, "visibility", visibility);
       map.setLayoutProperty(def.id + "-outline", "visibility", visibility);
       map.setLayoutProperty(def.id + "-halo", "visibility", visibility);
+      if (def.availabilityFlag) {
+        map.setLayoutProperty(def.id + "-flag-halo", "visibility", visibility);
+      }
     });
 
     const swatch = document.createElement("span");
@@ -391,8 +412,23 @@ function initBasemapOpacity() {
 function buildLegendNote() {
   const note = document.createElement("div");
   note.id = "legend-note";
-  note.innerHTML =
-    '<span class="swatch-ring"></span>背後に金色の丸: 住所が自動取得できず手動で位置を補完した地点';
+
+  const items = [
+    { color: "#ffd600", text: "背後に金色の丸: 住所が自動取得できず手動で位置を補完した地点" },
+    ...LAYER_DEFS.filter((d) => d.availabilityFlag).map((d) => ({
+      color: d.availabilityFlag.color,
+      text: `背後に色付きの丸(${d.label}): ${d.availabilityFlag.legendLabel}`,
+    })),
+  ];
+
+  note.innerHTML = items
+    .map(
+      ({ color, text }) =>
+        `<div class="legend-note-item"><span class="swatch-ring" style="box-shadow: 0 0 0 2px #fff, 0 0 0 6px ${color};"></span>${escapeHtml(
+          text
+        )}</div>`
+    )
+    .join("");
   document.getElementById("panel").appendChild(note);
 }
 

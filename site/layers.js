@@ -16,7 +16,13 @@ const LAYER_DEFS = [
       name: "name",
       address: ["pref", "municipality"],
       url: "urls",
-      extra: [],
+      extra: [{ key: "kippu_status", label: "道の駅記念きっぷ" }],
+    },
+    // プロット時点で判別できるよう、きっぷ販売中の地点だけ背後にオレンジの丸を敷く
+    availabilityFlag: {
+      key: "kippu_available",
+      color: "#ff6f00",
+      legendLabel: "道の駅記念きっぷ販売中",
     },
   },
   {
@@ -63,21 +69,6 @@ const LAYER_DEFS = [
         { key: "facility", label: "配布施設" },
         { key: "hours", label: "配布時間" },
         { key: "card_ver", label: "Ver" },
-      ],
-    },
-  },
-  {
-    id: "genpyo",
-    label: "道路元標",
-    file: "../data/genpyo.geojson",
-    style: { color: "#5d4037", shape: "circle", size: 14 },
-    popup: {
-      name: "name",
-      address: ["address"],
-      url: "source_url",
-      extra: [
-        { key: "note", label: "メモ" },
-        { key: "visited_date", label: "訪問日" },
       ],
     },
   },
