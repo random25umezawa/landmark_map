@@ -44,6 +44,32 @@ html, body {
   margin-bottom: 8px;
 }
 
+#panel-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+}
+
+#print-btn {
+  flex: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+#print-btn:hover {
+  color: #000;
+}
+
+#panel.collapsed #print-btn {
+  display: none;
+}
+
 #panel h1 {
   font-size: 15px;
   margin: 0;
@@ -281,4 +307,166 @@ html, body {
   line-height: 1.4;
   color: #666;
   word-break: break-all;
+}
+
+/* ---- 印刷グリッドのプレビュー(マス番号ラベル) ---- */
+
+#print-grid-label-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.print-grid-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  color: #e53935;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* ---- 印刷用ページ作成モーダル ---- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  width: min(400px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 印刷設定パネルは地図を覆わないよう、モーダルではなく右上に浮かせたパネルにする
+   (グリッドプレビューを見ながら設定できるようにするため) */
+.side-panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 8px;
+  padding: 16px 18px;
+  width: min(340px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.side-panel[hidden] {
+  display: none;
+}
+
+.modal h2,
+.side-panel h2 {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.modal-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 14px;
+}
+
+.modal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.modal-row-checkbox {
+  justify-content: flex-start;
+  font-size: 12px;
+  color: #444;
+  line-height: 1.4;
+}
+
+.modal-hint {
+  font-size: 11px;
+  color: #666;
+  margin: 0 0 12px;
+}
+
+.modal-section {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-section-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.modal-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+#print-range-controls {
+  margin-top: 6px;
+  padding-left: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.modal-actions-inline {
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
+.modal-actions button,
+.modal-row select {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+#print-generate {
+  background: #1565c0;
+  border-color: #1565c0;
+  color: #fff;
+}
+
+#print-progress .modal {
+  text-align: center;
+  font-size: 14px;
 }

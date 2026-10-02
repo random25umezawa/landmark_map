@@ -13,7 +13,10 @@
 <div id="panel">
   <div id="panel-header">
     <h1>ランドマーク統合マップ</h1>
-    <button id="panel-toggle" type="button"></button>
+    <div id="panel-header-buttons">
+      <button id="print-btn" type="button" title="印刷用ページを作成">🖨</button>
+      <button id="panel-toggle" type="button"></button>
+    </div>
   </div>
 
   <div id="global-settings">
@@ -24,6 +27,68 @@
   </div>
 
   <ul id="layer-list"></ul>
+</div>
+
+<div id="print-modal" class="side-panel" hidden>
+  <h2>印刷用ページを作成</h2>
+  <p class="modal-desc">
+    電波が無い場所でも見られるよう、指定した範囲を用紙サイズに収まるページに分割して印刷・PDF保存できるようにします。
+  </p>
+
+  <div class="modal-section">
+    <span class="modal-section-title">印刷する範囲</span>
+    <label class="modal-radio">
+      <input type="radio" name="print-range-mode" value="viewport" checked>
+      <span>現在の表示範囲</span>
+    </label>
+    <label class="modal-radio">
+      <input type="radio" name="print-range-mode" value="custom">
+      <span>地図上で範囲を指定</span>
+    </label>
+    <div id="print-range-controls" hidden>
+      <div class="modal-actions modal-actions-inline">
+        <button id="print-range-draw" type="button">範囲を描画</button>
+        <button id="print-range-clear" type="button">クリア</button>
+      </div>
+      <p id="print-range-status" class="modal-hint">未指定(描画してください)</p>
+    </div>
+  </div>
+
+  <div class="modal-section">
+    <span class="modal-section-title">用紙サイズ</span>
+    <label class="modal-row">
+      <span>サイズ</span>
+      <select id="print-paper-size"></select>
+    </label>
+    <label class="modal-row">
+      <span>向き</span>
+      <select id="print-paper-orientation">
+        <option value="portrait">縦</option>
+        <option value="landscape">横</option>
+      </select>
+    </label>
+  </div>
+
+  <label class="modal-row">
+    <span>グリッドの詳細度</span>
+    <select id="print-zoom"></select>
+  </label>
+  <p id="print-cell-size" class="modal-hint"></p>
+  <label class="modal-row modal-row-checkbox">
+    <input type="checkbox" id="print-grid-preview" checked>
+    <span>地図上に印刷範囲とグリッドを表示(範囲外は暗く表示)</span>
+  </label>
+  <p id="print-page-count" class="modal-hint"></p>
+  <div class="modal-actions">
+    <button id="print-cancel" type="button">キャンセル</button>
+    <button id="print-generate" type="button">ページを生成</button>
+  </div>
+</div>
+
+<div id="print-progress" class="modal-overlay" hidden>
+  <div class="modal">
+    <p id="print-progress-text">生成中…</p>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
