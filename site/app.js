@@ -201,26 +201,62 @@ function assignSpreadSlots(loaded) {
   });
 }
 
-// _spread に応じた icon-offset の式。icon-offset は icon-size 倍されるため、その分を割り戻す
-function spreadOffsetExpr(iconSizeValue) {
+// _spread に応じた icon-offset の式。icon-offset は icon-size 倍されるため、その分を割り戻す。
+// extraPx はずらした位置からさらに動かす量(バッジをアイコンの角に置くため)
+function spreadOffsetExpr(iconSizeValue, extraPx = [0, 0]) {
+  const offset = (x, y) => ["literal", [(x + extraPx[0]) / iconSizeValue, (y + extraPx[1]) / iconSizeValue]];
   const cases = [];
   for (let n = 2; n <= SPREAD_MAX; n++) {
     const radius = SPREAD_GAP_PX / 2 / Math.sin(Math.PI / n);
     for (let i = 0; i < n; i++) {
       const angle = Math.PI + (2 * Math.PI * i) / n; // 先頭(道の駅)を左側に置く
-      cases.push(`${i}/${n}`, [
-        "literal",
-        [(radius * Math.cos(angle)) / iconSizeValue, (radius * Math.sin(angle)) / iconSizeValue],
-      ]);
+      cases.push(`${i}/${n}`, offset(radius * Math.cos(angle), radius * Math.sin(angle)));
     }
   }
-  return ["match", ["coalesce", ["get", "_spread"], ""], ...cases, ["literal", [0, 0]]];
+  return ["match", ["coalesce", ["get", "_spread"], ""], ...cases, offset(0, 0)];
 }
 
 function layerIdsOf(def) {
   const ids = [def.id + "-halo", def.id + "-outline", def.id];
-  if (def.availabilityFlag) ids.push(def.id + "-flag-halo");
+  (def.badges || []).forEach((_, i) => ids.push(`${def.id}-badge-${i}-outline`, `${def.id}-badge-${i}`));
   return ids;
+}
+
+// 絞り込み条件に合わない地点(feature-state の dim)を半透明にする icon-opacity の式
+const DIM_OPACITY = 0.5;
+function opacityExpr(base = 1) {
+  return ["case", ["boolean", ["feature-state", "dim"], false], DIM_OPACITY * base, base];
+}
+
+// ---- バッジ(きっぷ・カード販売中などをアイコンの角の小さな丸で示す) ----
+const BADGE_MIN_ZOOM = 8; // 引いた状態では表示しない(全国表示で点が混み合うため)
+const BADGE_DIAMETER_PX = 5.5;
+
+function badgeLayers(def, badge, i) {
+  const visibility = def.defaultVisible ? "visible" : "none";
+  const corner = (def.style.size / 2) * 0.8;
+  const extra = [badge.position === "top-left" ? -corner : corner, -corner];
+  const circleDiameter = ICON_SIZE * 0.8; // circle 画像の直径(icon-size 1 のとき)
+  const layer = (suffix, diameter, color) => {
+    const size = diameter / circleDiameter;
+    return {
+      id: `${def.id}-badge-${i}${suffix}`,
+      type: "symbol",
+      source: def.id,
+      minzoom: BADGE_MIN_ZOOM,
+      filter: ["==", ["get", badge.key], true],
+      layout: {
+        visibility,
+        "icon-image": "circle",
+        "icon-size": size,
+        "icon-offset": spreadOffsetExpr(size, extra),
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+      },
+      paint: { "icon-color": color, "icon-opacity": opacityExpr() },
+    };
+  };
+  return [layer("-outline", BADGE_DIAMETER_PX + 3, "#ffffff"), layer("", BADGE_DIAMETER_PX, badge.color)];
 }
 
 function setLayerVisible(def, visible) {
@@ -244,7 +280,7 @@ function haloLayer(def, idSuffix, filter, color) {
     },
     paint: {
       "icon-color": color,
-      "icon-opacity": 0.9,
+      "icon-opacity": opacityExpr(0.9),
     },
   };
 }
@@ -252,17 +288,12 @@ function haloLayer(def, idSuffix, filter, color) {
 function addSourceAndHalos(def, data) {
   def.featureCount = data.features.length;
   def.attribution = data.attribution || null;
-  map.addSource(def.id, { type: "geojson", data });
+  def.data = data; // 絞り込みで各地点の属性を参照するため保持する
+  // generateId: 地点ごとの feature-state(絞り込みの半透明表示)を使うため、配列の添字をIDにする
+  map.addSource(def.id, { type: "geojson", data, generateId: true });
 
   // 手動で住所・座標を補完した地点は下に敷いた金色の丸で区別する
   map.addLayer(haloLayer(def, "-halo", ["==", ["get", "geocode_source"], "manual"], "#ffd600"));
-
-  // レイヤー固有の条件(例: 道の駅きっぷ販売中)を満たす地点は下に敷いた色付きの丸で区別する
-  if (def.availabilityFlag) {
-    map.addLayer(
-      haloLayer(def, "-flag-halo", ["==", ["get", def.availabilityFlag.key], true], def.availabilityFlag.color)
-    );
-  }
 }
 
 function addIconLayers(def) {
@@ -285,6 +316,7 @@ function addIconLayers(def) {
     },
     paint: {
       "icon-color": "#ffffff",
+      "icon-opacity": opacityExpr(),
     },
   });
 
@@ -302,8 +334,11 @@ function addIconLayers(def) {
     },
     paint: {
       "icon-color": def.style.color,
+      "icon-opacity": opacityExpr(),
     },
   });
+
+  (def.badges || []).forEach((badge, i) => badgeLayers(def, badge, i).forEach((layer) => map.addLayer(layer)));
 
   map.on("click", def.id, (e) => {
     const props = e.features[0].properties;
@@ -446,11 +481,169 @@ function buildPanel() {
 
     row.append(checkbox, swatch, label, count);
     li.appendChild(row);
+    if (def.filterPanel) li.appendChild(buildFilterPanel(def));
     list.appendChild(li);
   });
 
   buildLegendNote();
   buildAttributionFooter();
+}
+
+// ---- 道の駅の絞り込み(条件に合わない駅は消さずに半透明にする) ----
+
+const STAMP_AREAS = ["北海道", "東北", "関東", "北陸", "中部", "近畿", "中国", "四国", "九州沖縄"];
+const FILTER_DEFAULTS = { kippu: false, card: false, stamp24h: false, areas: STAMP_AREAS, openAt: "", openUntil: "" };
+
+function timeOptions(from, to) {
+  const list = [];
+  for (let m = from * 60; m <= to * 60; m += 30) {
+    list.push(`${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`);
+  }
+  return list;
+}
+
+function todayIso() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// 旅行日の月に当てはまる売店の営業時間 {o, c}。解釈できない駅は null(絞り込みで半透明にしない)
+function hoursForMonth(hours, month) {
+  if (!Array.isArray(hours)) return null;
+  return hours.find((h) => h.m && h.m.includes(month)) || hours.find((h) => !h.m) || null;
+}
+
+function stationMatches(p, f, month) {
+  if (f.kippu && p.kippu_available !== true) return false;
+  // カード: 長野県のように販売駅を特定できない駅(card_available が無く card_status だけある)は半透明にしない
+  if (f.card && p.card_available !== true && !(p.card_available === undefined && p.card_status)) return false;
+  if (f.stamp24h && p.stamp_24h !== true) return false;
+  if (f.areas.length < STAMP_AREAS.length && !f.areas.includes(p.stamp_area)) return false;
+  if (f.openAt || f.openUntil) {
+    const h = hoursForMonth(p.hours, month);
+    if (h) {
+      // "HH:MM" 形式なので文字列比較で前後関係を判定できる
+      if (f.openAt && !(h.o <= f.openAt && f.openAt < h.c)) return false;
+      if (f.openUntil && h.c < f.openUntil) return false;
+    }
+  }
+  return true;
+}
+
+function filterSummaryText(f, date) {
+  const parts = [];
+  if (f.kippu) parts.push("きっぷ");
+  if (f.card) parts.push("カード");
+  if (f.stamp24h) parts.push("24時間スタンプ");
+  if (f.areas.length < STAMP_AREAS.length) parts.push(`エリア:${f.areas.join("・") || "なし"}`);
+  if (f.openAt || f.openUntil) {
+    parts.push(`${date.slice(5).replace("-", "/")}に${f.openAt ? f.openAt + "時点で" : ""}${f.openUntil ? f.openUntil + "まで" : ""}営業`);
+  }
+  return parts.join("、");
+}
+
+function buildFilterPanel(def) {
+  const saved = loadSetting("michinoekiFilter", {});
+  const f = { ...FILTER_DEFAULTS, ...saved };
+  f.areas = Array.isArray(f.areas) ? f.areas.filter((a) => STAMP_AREAS.includes(a)) : STAMP_AREAS;
+  let travelDate = todayIso(); // 旅行日は保存せず、開くたびに今日にする
+
+  const panel = document.createElement("details");
+  panel.className = "filter-panel";
+  panel.open = loadSetting("michinoekiFilterOpen", false);
+  panel.addEventListener("toggle", () => saveSetting("michinoekiFilterOpen", panel.open));
+
+  const openAtOptions = timeOptions(6, 12).map((t) => `<option value="${t}">${t}</option>`).join("");
+  const untilOptions = timeOptions(15, 22).map((t) => `<option value="${t}">${t}</option>`).join("");
+  panel.innerHTML = `
+    <summary>絞り込み <span class="filter-count"></span></summary>
+    <div class="filter-body">
+      <label class="filter-check"><input type="checkbox" data-key="kippu">記念きっぷ販売あり</label>
+      <label class="filter-check"><input type="checkbox" data-key="card">道の駅カード販売あり</label>
+      <label class="filter-check"><input type="checkbox" data-key="stamp24h">24時間スタンプあり<span class="filter-hint">(登録済みの駅のみ)</span></label>
+      <div class="filter-group">
+        <div class="filter-group-title">スタンプラリーのエリア
+          <button type="button" class="filter-link" data-areas="all">全選択</button>
+          <button type="button" class="filter-link" data-areas="none">全解除</button>
+        </div>
+        <div class="filter-areas">
+          ${STAMP_AREAS.map((a) => `<label><input type="checkbox" data-area="${a}">${a}</label>`).join("")}
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-title">営業時間(売店)</div>
+        <label class="filter-row"><span>旅行日</span><input type="date" data-key="date"></label>
+        <label class="filter-row"><span>この時刻に営業中</span>
+          <select data-key="openAt"><option value="">指定なし</option>${openAtOptions}</select></label>
+        <label class="filter-row"><span>この時刻まで営業</span>
+          <select data-key="openUntil"><option value="">指定なし</option>${untilOptions}</select></label>
+        <div class="filter-hint">営業時間が読み取れない駅は半透明にしません</div>
+      </div>
+      <button type="button" class="filter-link filter-reset">条件をクリア</button>
+    </div>`;
+
+  const q = (sel) => panel.querySelector(sel);
+  const syncInputs = () => {
+    ["kippu", "card", "stamp24h"].forEach((k) => (q(`input[data-key="${k}"]`).checked = f[k]));
+    panel.querySelectorAll("input[data-area]").forEach((el) => (el.checked = f.areas.includes(el.dataset.area)));
+    q('input[data-key="date"]').value = travelDate;
+    q('select[data-key="openAt"]').value = f.openAt;
+    q('select[data-key="openUntil"]').value = f.openUntil;
+  };
+
+  const apply = () => {
+    saveSetting("michinoekiFilter", f);
+    const month = Number(travelDate.slice(5, 7)) || new Date().getMonth() + 1;
+    let matched = 0;
+    def.data.features.forEach((feature, id) => {
+      const ok = stationMatches(feature.properties, f, month);
+      if (ok) matched++;
+      map.setFeatureState({ source: def.id, id }, { dim: !ok });
+    });
+    const summary = filterSummaryText(f, travelDate);
+    def.filterSummary = summary || null;
+    q(".filter-count").textContent = summary ? `(該当 ${matched} / ${def.data.features.length}駅)` : "";
+    panel.classList.toggle("filter-active", !!summary);
+  };
+
+  ["kippu", "card", "stamp24h"].forEach((k) =>
+    q(`input[data-key="${k}"]`).addEventListener("change", (e) => {
+      f[k] = e.target.checked;
+      apply();
+    })
+  );
+  panel.querySelectorAll("input[data-area]").forEach((el) =>
+    el.addEventListener("change", () => {
+      f.areas = STAMP_AREAS.filter((a) => panel.querySelector(`input[data-area="${a}"]`).checked);
+      apply();
+    })
+  );
+  panel.querySelectorAll("button[data-areas]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      f.areas = btn.dataset.areas === "all" ? [...STAMP_AREAS] : [];
+      syncInputs();
+      apply();
+    })
+  );
+  q('input[data-key="date"]').addEventListener("change", (e) => {
+    travelDate = e.target.value || todayIso();
+    apply();
+  });
+  ["openAt", "openUntil"].forEach((k) =>
+    q(`select[data-key="${k}"]`).addEventListener("change", (e) => {
+      f[k] = e.target.value;
+      apply();
+    })
+  );
+  q(".filter-reset").addEventListener("click", () => {
+    Object.assign(f, FILTER_DEFAULTS, { areas: [...STAMP_AREAS] });
+    syncInputs();
+    apply();
+  });
+
+  syncInputs();
+  apply();
+  return panel;
 }
 
 function initBasemapOpacity() {
@@ -469,21 +662,22 @@ function buildLegendNote() {
   const note = document.createElement("div");
   note.id = "legend-note";
 
+  const ring = (color) =>
+    `<span class="swatch-ring" style="box-shadow: 0 0 0 2px #fff, 0 0 0 6px ${color};"></span>`;
+  const badge = (def, b) =>
+    `<span class="swatch-badged" style="--main:${def.style.color};--badge:${b.color}" data-position="${b.position}"></span>`;
   const items = [
-    { color: "#ffd600", text: "背後に金色の丸: 住所が自動取得できず手動で位置を補完した地点" },
-    ...LAYER_DEFS.filter((d) => d.availabilityFlag).map((d) => ({
-      color: d.availabilityFlag.color,
-      text: `背後に色付きの丸(${d.label}): ${d.availabilityFlag.legendLabel}`,
-    })),
+    { icon: ring("#ffd600"), text: "背後に金色の丸: 住所が自動取得できず手動で位置を補完した地点" },
+    ...LAYER_DEFS.filter((d) => d.badges && map.getLayer(d.id)).flatMap((d) =>
+      d.badges.map((b) => ({
+        icon: badge(d, b),
+        text: `${b.position === "top-left" ? "左上" : "右上"}の${b.colorName}の点(${d.label}、拡大時): ${b.legendLabel}`,
+      }))
+    ),
   ];
 
   note.innerHTML = items
-    .map(
-      ({ color, text }) =>
-        `<div class="legend-note-item"><span class="swatch-ring" style="box-shadow: 0 0 0 2px #fff, 0 0 0 6px ${color};"></span>${escapeHtml(
-          text
-        )}</div>`
-    )
+    .map(({ icon, text }) => `<div class="legend-note-item">${icon}${escapeHtml(text)}</div>`)
     .join("");
   document.getElementById("panel").appendChild(note);
 }
@@ -988,15 +1182,17 @@ function buildPrintLegendHtml() {
   );
   const notes = [
     `<span class="lg"><i class="ring" style="box-shadow:0 0 0 1px #ffd600;"></i>手動補完</span>`,
-    ...visibleDefs
-      .filter((d) => d.availabilityFlag)
-      .map(
-        (d) =>
-          `<span class="lg"><i class="ring" style="box-shadow:0 0 0 1px ${d.availabilityFlag.color};"></i>${escapeHtml(
-            d.availabilityFlag.legendLabel
-          )}</span>`
-      ),
+    ...visibleDefs.flatMap((d) =>
+      (d.badges || []).map(
+        (b) =>
+          `<span class="lg"><i style="background:${b.color};border-radius:50%;width:1.6mm;height:1.6mm;"></i>${escapeHtml(
+            b.legendLabel
+          )}(${b.position === "top-left" ? "左上" : "右上"})</span>`
+      )
+    ),
   ];
+  const filterNote = visibleDefs.map((d) => d.filterSummary).find(Boolean);
+  if (filterNote) notes.push(`<span class="lg">半透明: 絞り込み(${escapeHtml(filterNote)})に該当しない駅</span>`);
   return items.concat(notes).join("");
 }
 

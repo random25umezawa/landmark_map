@@ -7,6 +7,9 @@
 //   - address: 連結して住所として表示するフィールド名の配列
 //   - url:     リンクとして表示するフィールド(値が配列でも可)
 //   - extra:   { key, label } の配列。ラベル付きでその他情報として表示
+// badges: プロット時点で判別できるよう、key が true の地点のアイコンの角に付ける小さな丸
+//   (拡大時のみ表示)。position は "top-right" / "top-left"
+// filterPanel: 凡例の下に絞り込みパネルを出す(道の駅専用。条件に合わない地点は半透明にする)
 const LAYER_DEFS = [
   {
     id: "michinoeki",
@@ -18,14 +21,19 @@ const LAYER_DEFS = [
       name: "name",
       address: ["pref", "municipality"],
       url: "urls",
-      extra: [{ key: "kippu_status", label: "道の駅記念きっぷ" }],
+      extra: [
+        { key: "hours_text", label: "営業時間" },
+        { key: "kippu_status", label: "道の駅記念きっぷ" },
+        { key: "card_status", label: "道の駅カード" },
+        { key: "stamp_area", label: "スタンプラリーのエリア" },
+        { key: "stamp_24h_label", label: "24時間スタンプ" },
+      ],
     },
-    // プロット時点で判別できるよう、きっぷ販売中の地点だけ背後にオレンジの丸を敷く
-    availabilityFlag: {
-      key: "kippu_available",
-      color: "#ff6f00",
-      legendLabel: "道の駅記念きっぷ販売中",
-    },
+    badges: [
+      { key: "kippu_available", color: "#ff6f00", colorName: "オレンジ", position: "top-right", legendLabel: "道の駅記念きっぷ販売中" },
+      { key: "card_available", color: "#1e88e5", colorName: "青", position: "top-left", legendLabel: "道の駅カード販売中" },
+    ],
+    filterPanel: true,
   },
   {
     id: "rvpark",

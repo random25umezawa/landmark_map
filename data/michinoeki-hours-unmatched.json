@@ -1,0 +1,151 @@
+[
+  {
+    "key": "北海道/あびら D51ステーション",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19928"
+  },
+  {
+    "key": "北海道/ふるびらたらこミュージアム",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22681"
+  },
+  {
+    "key": "北海道/北オホーツクはまとんべつ",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19927"
+  },
+  {
+    "key": "秋田県/十和田湖",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22370"
+  },
+  {
+    "key": "岩手県/もりおか渋民",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22683"
+  },
+  {
+    "key": "福島県/石川",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22977"
+  },
+  {
+    "key": "埼玉県/べに花の郷おけがわ",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22524"
+  },
+  {
+    "key": "神奈川県/やどりきテラス 清流の里",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/23221"
+  },
+  {
+    "key": "新潟県/加治川",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19200"
+  },
+  {
+    "key": "新潟県/ちぢみの里おぢや",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19207"
+  },
+  {
+    "key": "富山県/利賀",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19239"
+  },
+  {
+    "key": "山梨県/なんぶ",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19906"
+  },
+  {
+    "key": "長野県/歌舞伎の里大鹿",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19918"
+  },
+  {
+    "key": "長野県/ビーナスライン蓼科湖",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19947"
+  },
+  {
+    "key": "長野県/八千穂高原",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22371"
+  },
+  {
+    "key": "長野県/和田宿ステーション",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22056"
+  },
+  {
+    "key": "静岡県/そらっと牧之原",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22688"
+  },
+  {
+    "key": "兵庫県/こんだ温泉ぬくもりの郷",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/23222"
+  },
+  {
+    "key": "兵庫県/よかわ",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22527"
+  },
+  {
+    "key": "奈良県/飛鳥",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19920"
+  },
+  {
+    "key": "奈良県/きなりの郷下北山",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22788"
+  },
+  {
+    "key": "徳島県/くるくる なると",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19975"
+  },
+  {
+    "key": "福岡県/筑前みなみの里",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19941"
+  },
+  {
+    "key": "佐賀県/うれしの まるく",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/21779"
+  },
+  {
+    "key": "佐賀県/かみみね",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22529"
+  },
+  {
+    "key": "熊本県/あそ望の郷くぎの",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/19839"
+  },
+  {
+    "key": "熊本県/くらたけ天草戦国ミュージアム",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/23223"
+  },
+  {
+    "key": "熊本県/ウェルネスあらお",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22789"
+  },
+  {
+    "key": "大分県/たのうらら",
+    "reason": "営業時間欄なし",
+    "portal_url": "https://www.michi-no-eki.jp/stations/views/22270"
+  },
+  {
+    "key": "鹿児島県/たるみずはまびら",
+    "reason": "ポータルの一覧に該当駅なし"
+  }
+]

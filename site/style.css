@@ -98,7 +98,9 @@ html, body {
 #panel.collapsed .layer-row input[type="checkbox"],
 #panel.collapsed .layer-row .count,
 #panel.collapsed #legend-note,
-#panel.collapsed #attribution-footer {
+#panel.collapsed #attribution-footer,
+#panel.collapsed .filter-panel,
+.layer-item.layer-off .filter-panel {
   display: none;
 }
 
@@ -248,6 +250,127 @@ html, body {
   height: 10px;
   border-radius: 50%;
   background: #999;
+}
+
+/* 凡例: アイコンの角にバッジが付いた見本 */
+#legend-note .swatch-badged {
+  position: relative;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--main);
+  margin: 2px 2px 0;
+}
+
+#legend-note .swatch-badged::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--badge);
+  box-shadow: 0 0 0 1px #fff;
+}
+
+#legend-note .swatch-badged[data-position="top-right"]::after {
+  right: -3px;
+}
+
+#legend-note .swatch-badged[data-position="top-left"]::after {
+  left: -3px;
+}
+
+/* ---- 道の駅の絞り込み ---- */
+
+.filter-panel {
+  margin: 0 0 6px 20px;
+  font-size: 12px;
+}
+
+.filter-panel summary {
+  cursor: pointer;
+  color: #444;
+  padding: 2px 0;
+}
+
+.filter-panel.filter-active summary {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.filter-count {
+  font-weight: normal;
+}
+
+.filter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0 2px;
+}
+
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-hint {
+  color: #888;
+  font-size: 10px;
+}
+
+.filter-group {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.12);
+}
+
+.filter-group-title {
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.filter-areas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px 4px;
+}
+
+.filter-areas label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin: 2px 0;
+}
+
+.filter-row input,
+.filter-row select {
+  font-size: 12px;
+}
+
+.filter-link {
+  border: none;
+  background: none;
+  padding: 0 2px;
+  color: #1565c0;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.filter-reset {
+  align-self: flex-start;
+  margin-top: 4px;
 }
 
 #attribution-footer {

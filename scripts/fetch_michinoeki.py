@@ -151,7 +151,7 @@ class Portal:
     """全国「道の駅」連絡会ポータルから駅IDと座標を引く(Crawl-delay遵守・キャッシュ付き)。"""
 
     def __init__(self) -> None:
-        self.cache: dict[str, list[float]] = (
+        self.cache: dict[str, dict | list[float]] = (
             json.loads(PORTAL_CACHE_PATH.read_text(encoding="utf-8")) if PORTAL_CACHE_PATH.exists() else {}
         )
         self.listings: dict[str, list[tuple[str, str, str]]] = {}
@@ -202,16 +202,35 @@ class Portal:
         partial = [(sid, muni) for n, sid, muni in stations if n.startswith(norm) or norm.startswith(n)]
         return partial[0] if len(partial) == 1 else None
 
+    def page(self, station_id: str) -> dict:
+        """駅ページの {coords, info, fetched}。info は詳細欄(営業時間等)の {見出し: 値}。
+
+        旧形式のキャッシュ(座標の配列のみ)は info を持たないため取り直す。
+        """
+        cached = self.cache.get(station_id)
+        if isinstance(cached, dict) and "info" in cached:
+            return cached
+        html = self._get(f"{PORTAL_BASE}/stations/views/{station_id}")
+        m = _PORTAL_COORD_RE.search(html)
+        info = {}
+        for dl in BeautifulSoup(html, "html.parser").select("div.info dl"):
+            dt, dd = dl.find("dt"), dl.find("dd")
+            if dt and dd:
+                info[dt.get_text(strip=True)] = dd.get_text(" ", strip=True)
+        entry = {
+            "coords": [float(m.group(2)), float(m.group(1))] if m else None,
+            "info": info,
+            "fetched": time.strftime("%Y-%m-%d"),
+        }
+        self.cache[station_id] = entry
+        PORTAL_CACHE_PATH.write_text(json.dumps(self.cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return entry
+
     def coords(self, station_id: str) -> list[float] | None:
-        if station_id not in self.cache:
-            html = self._get(f"{PORTAL_BASE}/stations/views/{station_id}")
-            m = _PORTAL_COORD_RE.search(html)
-            if m is None:
-                return None
-            lat, lon = float(m.group(1)), float(m.group(2))
-            self.cache[station_id] = [lon, lat]
-            PORTAL_CACHE_PATH.write_text(json.dumps(self.cache, indent=2) + "\n", encoding="utf-8")
-        return self.cache[station_id]
+        cached = self.cache.get(station_id)
+        if isinstance(cached, list):  # 旧形式のキャッシュ
+            return cached
+        return self.page(station_id)["coords"]
 
 
 def in_japan(coords: list[float]) -> bool:

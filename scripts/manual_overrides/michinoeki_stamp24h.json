@@ -1,0 +1,33 @@
+{
+  "_説明": "営業時間外も道の駅スタンプを押せる駅の手動記録。キーは \"県名/駅名\"。confidence は公式(駅・連絡会・自治体)の告知で確認できたものを official、ファンサイト等の二次情報のみのものを unconfirmed とする。source は確認した情報源のURL。",
+  "北海道/てしお": {
+    "confidence": "official",
+    "source": "https://hokkaido-michinoeki.jp/michiekiinfo/teshioinfo/50955/",
+    "note": "トイレ側にスタンプを追加し24時間利用可(2024-04-22告知)"
+  },
+  "北海道/おとふけ": {
+    "confidence": "unconfirmed",
+    "source": "https://michinoeki-otofuke.jp/post-2872/",
+    "note": "駅公式サイトに「24時間WCホールにスタンプ設置」の告知があったが、2026-10-02時点でページが削除(404)されており現況未確認"
+  },
+  "北海道/さるふつ公園": {
+    "confidence": "official",
+    "source": "https://sarufutsu.jp/road_station/information/",
+    "note": "道の駅スタンプラリーのスタンプは24時間押印可能"
+  },
+  "宮城県/さんさん南三陸": {
+    "confidence": "official",
+    "source": "https://www.sansan-minamisanriku.com/archives/45323.html/",
+    "note": "道の駅内の交通ターミナルに設置、24時間押印可能(2022-10-24告知)"
+  },
+  "群馬県/くらぶち小栗の里": {
+    "confidence": "unconfirmed",
+    "source": "https://miti-no-eki.box-style.com/station-1020.html",
+    "note": "ファンサイトの利用者投稿: 2階休憩所で24時間押印可能"
+  },
+  "群馬県/しもにた": {
+    "confidence": "unconfirmed",
+    "source": "https://miti-no-eki.box-style.com/station-287.html",
+    "note": "ファンサイトの利用者投稿: 情報館に24時間スタンプ設置"
+  }
+}

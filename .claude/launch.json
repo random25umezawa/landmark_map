@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8090"],
       "port": 8090
+    },
+    {
+      "name": "landmark-map-site-alt",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8091"],
+      "port": 8091
     }
   ]
 }
