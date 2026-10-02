@@ -79,9 +79,11 @@ function createShapeImageData(shape) {
 }
 
 function registerShapeImages() {
-  SHAPE_OPTIONS.forEach(({ value }) => {
-    if (!map.hasImage(value)) {
-      map.addImage(value, createShapeImageData(value), { sdf: true });
+  // 背後の丸(手動補完・きっぷ販売中)も symbol で描くため circle は常に登録する
+  const shapes = new Set(["circle", ...LAYER_DEFS.map((d) => d.style.shape)]);
+  shapes.forEach((shape) => {
+    if (!map.hasImage(shape)) {
+      map.addImage(shape, createShapeImageData(shape), { sdf: true });
     }
   });
 }
@@ -96,7 +98,6 @@ map.on("load", async () => {
   // 1件失敗しても他のレイヤーの表示やパネル構築は妨げない。
   const loadedLayers = await Promise.all(
     LAYER_DEFS.map(async (def) => {
-      def.style = { ...def.style, ...loadSetting(`layerStyle.${def.id}`, {}) };
       try {
         const data = await fetch(def.file).then((r) => r.json());
         return { def, data };
@@ -106,9 +107,11 @@ map.on("load", async () => {
       }
     })
   );
-  loadedLayers.forEach((entry) => {
-    if (entry) addLayer(entry.def, entry.data);
-  });
+  const loaded = loadedLayers.filter(Boolean);
+  assignSpreadSlots(loaded);
+  // 背後の丸は全レイヤー分を先に描き、どのアイコンも他レイヤーの丸に隠れないようにする
+  loaded.forEach(({ def, data }) => addSourceAndHalos(def, data));
+  loaded.forEach(({ def }) => addIconLayers(def));
   buildPanel();
   initBasemapOpacity();
   initPrintTool();
@@ -124,39 +127,148 @@ function outlineIconSize(size) {
 function haloRadius(size) {
   return size / 2 + 8; // 白い縁取りのさらに外側に金色の丸がのぞく大きさ
 }
+// 背後の丸を circle 画像(半径 ICON_SIZE*0.4)の symbol で描くときの icon-size
+function haloIconSize(size) {
+  return haloRadius(size) / (ICON_SIZE * 0.4);
+}
 
-function addLayer(def, data) {
+// ---- ほぼ同地点にある複数の地点を、画面上で少しずらして並べる ----
+// 道の駅とRVパークが同じ敷地にあるなど、別レイヤーの地点同士が重なって下の地点が隠れるのを防ぐ。
+// ずらす量はピクセル単位で一定にし、どのズームでも隣り合って見えるようにする。
+const SPREAD_DISTANCE_M = 100; // この距離以内の地点を「ほぼ同地点」とみなす
+const SPREAD_GAP_PX = 14; // ずらした後の隣り合うアイコン中心間の距離(白縁込みの直径約14pxと同じで、隣と接する程度)
+const SPREAD_MAX = 8; // これより多い地点が集まっている場合はずらさない
+
+function distanceMeters([lon1, lat1], [lon2, lat2]) {
+  const rad = Math.PI / 180;
+  const x = (lon2 - lon1) * rad * Math.cos(((lat1 + lat2) / 2) * rad);
+  const y = (lat2 - lat1) * rad;
+  return Math.sqrt(x * x + y * y) * 6371000;
+}
+
+// 近接する地点をまとめ、各地点に "<順番>/<件数>" 形式の _spread プロパティを付ける
+function assignSpreadSlots(loaded) {
+  const points = [];
+  loaded.forEach(({ def, data }) => {
+    const order = LAYER_DEFS.indexOf(def);
+    data.features.forEach((f) => {
+      if (f.geometry && f.geometry.type === "Point") {
+        points.push({ feature: f, coord: f.geometry.coordinates, order });
+      }
+    });
+  });
+
+  // 格子に振り分けて近傍だけを比較し、Union-Find でまとめる
+  const cellDeg = 0.002; // 約200m。SPREAD_DISTANCE_M より大きくして隣接セルだけ見れば済むようにする
+  const cellKey = (cx, cy) => `${cx},${cy}`;
+  const grid = new Map();
+  points.forEach((p, i) => {
+    p.cx = Math.floor(p.coord[0] / cellDeg);
+    p.cy = Math.floor(p.coord[1] / cellDeg);
+    const key = cellKey(p.cx, p.cy);
+    if (!grid.has(key)) grid.set(key, []);
+    grid.get(key).push(i);
+  });
+
+  const parent = points.map((_, i) => i);
+  const find = (i) => (parent[i] === i ? i : (parent[i] = find(parent[i])));
+  points.forEach((p, i) => {
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        (grid.get(cellKey(p.cx + dx, p.cy + dy)) || []).forEach((j) => {
+          if (j <= i) return;
+          if (distanceMeters(p.coord, points[j].coord) <= SPREAD_DISTANCE_M) {
+            parent[find(i)] = find(j);
+          }
+        });
+      }
+    }
+  });
+
+  const groups = new Map();
+  points.forEach((p, i) => {
+    const root = find(i);
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push(p);
+  });
+  groups.forEach((members) => {
+    if (members.length < 2 || members.length > SPREAD_MAX) return;
+    // 凡例の並び順(道の駅が先頭)で位置を割り当てる
+    members.sort((a, b) => a.order - b.order);
+    members.forEach((p, i) => {
+      p.feature.properties = { ...p.feature.properties, _spread: `${i}/${members.length}` };
+    });
+  });
+}
+
+// _spread に応じた icon-offset の式。icon-offset は icon-size 倍されるため、その分を割り戻す
+function spreadOffsetExpr(iconSizeValue) {
+  const cases = [];
+  for (let n = 2; n <= SPREAD_MAX; n++) {
+    const radius = SPREAD_GAP_PX / 2 / Math.sin(Math.PI / n);
+    for (let i = 0; i < n; i++) {
+      const angle = Math.PI + (2 * Math.PI * i) / n; // 先頭(道の駅)を左側に置く
+      cases.push(`${i}/${n}`, [
+        "literal",
+        [(radius * Math.cos(angle)) / iconSizeValue, (radius * Math.sin(angle)) / iconSizeValue],
+      ]);
+    }
+  }
+  return ["match", ["coalesce", ["get", "_spread"], ""], ...cases, ["literal", [0, 0]]];
+}
+
+function layerIdsOf(def) {
+  const ids = [def.id + "-halo", def.id + "-outline", def.id];
+  if (def.availabilityFlag) ids.push(def.id + "-flag-halo");
+  return ids;
+}
+
+function setLayerVisible(def, visible) {
+  layerIdsOf(def).forEach((id) => map.setLayoutProperty(id, "visibility", visible ? "visible" : "none"));
+}
+
+function haloLayer(def, idSuffix, filter, color) {
+  const size = haloIconSize(def.style.size);
+  return {
+    id: def.id + idSuffix,
+    type: "symbol",
+    source: def.id,
+    filter,
+    layout: {
+      visibility: def.defaultVisible ? "visible" : "none",
+      "icon-image": "circle",
+      "icon-size": size,
+      "icon-offset": spreadOffsetExpr(size),
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+    },
+    paint: {
+      "icon-color": color,
+      "icon-opacity": 0.9,
+    },
+  };
+}
+
+function addSourceAndHalos(def, data) {
   def.featureCount = data.features.length;
   def.attribution = data.attribution || null;
   map.addSource(def.id, { type: "geojson", data });
 
   // 手動で住所・座標を補完した地点は下に敷いた金色の丸で区別する
-  map.addLayer({
-    id: def.id + "-halo",
-    type: "circle",
-    source: def.id,
-    filter: ["==", ["get", "geocode_source"], "manual"],
-    paint: {
-      "circle-radius": haloRadius(def.style.size),
-      "circle-color": "#ffd600",
-      "circle-opacity": 0.9,
-    },
-  });
+  map.addLayer(haloLayer(def, "-halo", ["==", ["get", "geocode_source"], "manual"], "#ffd600"));
 
   // レイヤー固有の条件(例: 道の駅きっぷ販売中)を満たす地点は下に敷いた色付きの丸で区別する
   if (def.availabilityFlag) {
-    map.addLayer({
-      id: def.id + "-flag-halo",
-      type: "circle",
-      source: def.id,
-      filter: ["==", ["get", def.availabilityFlag.key], true],
-      paint: {
-        "circle-radius": haloRadius(def.style.size),
-        "circle-color": def.availabilityFlag.color,
-        "circle-opacity": 0.9,
-      },
-    });
+    map.addLayer(
+      haloLayer(def, "-flag-halo", ["==", ["get", def.availabilityFlag.key], true], def.availabilityFlag.color)
+    );
   }
+}
+
+function addIconLayers(def) {
+  const visibility = def.defaultVisible ? "visible" : "none";
+  const outlineSize = outlineIconSize(def.style.size);
+  const mainSize = iconSize(def.style.size);
 
   // 本体より一回り大きい白いアイコンを下敷きにし、白い縁取りに見せる
   map.addLayer({
@@ -164,8 +276,10 @@ function addLayer(def, data) {
     type: "symbol",
     source: def.id,
     layout: {
+      visibility,
       "icon-image": def.style.shape,
-      "icon-size": outlineIconSize(def.style.size),
+      "icon-size": outlineSize,
+      "icon-offset": spreadOffsetExpr(outlineSize),
       "icon-allow-overlap": true,
       "icon-ignore-placement": true,
     },
@@ -179,8 +293,10 @@ function addLayer(def, data) {
     type: "symbol",
     source: def.id,
     layout: {
+      visibility,
       "icon-image": def.style.shape,
-      "icon-size": iconSize(def.style.size),
+      "icon-size": mainSize,
+      "icon-offset": spreadOffsetExpr(mainSize),
       "icon-allow-overlap": true,
       "icon-ignore-placement": true,
     },
@@ -202,24 +318,6 @@ function addLayer(def, data) {
 
   map.on("mouseenter", def.id, () => (map.getCanvas().style.cursor = "pointer"));
   map.on("mouseleave", def.id, () => (map.getCanvas().style.cursor = ""));
-}
-
-function applyLayerStyle(def) {
-  map.setLayoutProperty(def.id, "icon-image", def.style.shape);
-  map.setLayoutProperty(def.id, "icon-size", iconSize(def.style.size));
-  map.setPaintProperty(def.id, "icon-color", def.style.color);
-  map.setLayoutProperty(def.id + "-outline", "icon-image", def.style.shape);
-  map.setLayoutProperty(def.id + "-outline", "icon-size", outlineIconSize(def.style.size));
-  map.setPaintProperty(def.id + "-halo", "circle-radius", haloRadius(def.style.size));
-  if (def.availabilityFlag) {
-    map.setPaintProperty(def.id + "-flag-halo", "circle-radius", haloRadius(def.style.size));
-  }
-}
-
-function updateLayerStyle(def, patch) {
-  def.style = { ...def.style, ...patch };
-  applyLayerStyle(def);
-  saveSetting(`layerStyle.${def.id}`, def.style);
 }
 
 // ---- ポップアップ内容の組み立て ----
@@ -315,6 +413,9 @@ function applySwatchStyle(swatch, style) {
 function buildPanel() {
   const list = document.getElementById("layer-list");
   LAYER_DEFS.forEach((def) => {
+    // 読み込みに失敗したレイヤーは地図に存在しないので凡例にも出さない
+    if (!map.getLayer(def.id)) return;
+
     const li = document.createElement("li");
     li.className = "layer-item";
 
@@ -323,15 +424,12 @@ function buildPanel() {
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.checked = true;
+    checkbox.checked = !!def.defaultVisible;
+    // 折りたたみ時はOFFのレイヤーを凡例から隠すため、状態をクラスで持たせる
+    li.classList.toggle("layer-off", !checkbox.checked);
     checkbox.addEventListener("change", () => {
-      const visibility = checkbox.checked ? "visible" : "none";
-      map.setLayoutProperty(def.id, "visibility", visibility);
-      map.setLayoutProperty(def.id + "-outline", "visibility", visibility);
-      map.setLayoutProperty(def.id + "-halo", "visibility", visibility);
-      if (def.availabilityFlag) {
-        map.setLayoutProperty(def.id + "-flag-halo", "visibility", visibility);
-      }
+      setLayerVisible(def, checkbox.checked);
+      li.classList.toggle("layer-off", !checkbox.checked);
     });
 
     const swatch = document.createElement("span");
@@ -346,73 +444,13 @@ function buildPanel() {
     count.className = "count";
     count.textContent = def.featureCount ?? 0;
 
-    const gearBtn = document.createElement("button");
-    gearBtn.type = "button";
-    gearBtn.className = "gear-btn";
-    gearBtn.title = "表示設定";
-    gearBtn.textContent = "⚙";
-
-    row.append(checkbox, swatch, label, count, gearBtn);
-
-    const settings = buildLayerSettings(def, swatch);
-    gearBtn.addEventListener("click", () => {
-      settings.hidden = !settings.hidden;
-    });
-
-    li.append(row, settings);
+    row.append(checkbox, swatch, label, count);
+    li.appendChild(row);
     list.appendChild(li);
   });
 
   buildLegendNote();
   buildAttributionFooter();
-}
-
-function buildLayerSettings(def, swatch) {
-  const wrap = document.createElement("div");
-  wrap.className = "layer-settings";
-  wrap.hidden = true;
-
-  const colorLabel = document.createElement("label");
-  colorLabel.textContent = "色";
-  const colorInput = document.createElement("input");
-  colorInput.type = "color";
-  colorInput.value = def.style.color;
-  colorInput.addEventListener("input", () => {
-    updateLayerStyle(def, { color: colorInput.value });
-    applySwatchStyle(swatch, def.style);
-  });
-  colorLabel.appendChild(colorInput);
-
-  const shapeLabel = document.createElement("label");
-  shapeLabel.textContent = "形";
-  const shapeSelect = document.createElement("select");
-  SHAPE_OPTIONS.forEach(({ value, label: shapeName }) => {
-    const opt = document.createElement("option");
-    opt.value = value;
-    opt.textContent = shapeName;
-    if (value === def.style.shape) opt.selected = true;
-    shapeSelect.appendChild(opt);
-  });
-  shapeSelect.addEventListener("change", () => {
-    updateLayerStyle(def, { shape: shapeSelect.value });
-    applySwatchStyle(swatch, def.style);
-  });
-  shapeLabel.appendChild(shapeSelect);
-
-  const sizeLabel = document.createElement("label");
-  sizeLabel.textContent = "大きさ";
-  const sizeInput = document.createElement("input");
-  sizeInput.type = "range";
-  sizeInput.min = "8";
-  sizeInput.max = "32";
-  sizeInput.value = String(def.style.size);
-  sizeInput.addEventListener("input", () => {
-    updateLayerStyle(def, { size: Number(sizeInput.value) });
-  });
-  sizeLabel.appendChild(sizeInput);
-
-  wrap.append(colorLabel, shapeLabel, sizeLabel);
-  return wrap;
 }
 
 function initBasemapOpacity() {

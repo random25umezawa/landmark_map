@@ -1,6 +1,7 @@
 // レイヤー定義。データ収集が進むごとに実データへ差し替える。
 //
-// style: 初期の色・形・大きさ(ユーザーが設定パネルから変更可能。変更値はlocalStorageに保存される)
+// style: 色・形・大きさ
+// defaultVisible: 初期表示でONにするか(未指定はOFF)
 // popup: ポップアップの表示構成
 //   - name:    種別ラベルの隣に表示する名前フィールド
 //   - address: 連結して住所として表示するフィールド名の配列
@@ -10,6 +11,7 @@ const LAYER_DEFS = [
   {
     id: "michinoeki",
     label: "道の駅",
+    defaultVisible: true,
     file: "../data/michinoeki.geojson",
     style: { color: "#2e7d32", shape: "circle", size: 14 },
     popup: {
@@ -23,6 +25,25 @@ const LAYER_DEFS = [
       key: "kippu_available",
       color: "#ff6f00",
       legendLabel: "道の駅記念きっぷ販売中",
+    },
+  },
+  {
+    id: "rvpark",
+    label: "RVパーク",
+    file: "../data/rvpark.geojson",
+    style: { color: "#ad1457", shape: "circle", size: 14 },
+    popup: {
+      name: "name",
+      address: ["address"],
+      url: "url",
+      extra: [
+        { key: "phone", label: "電話" },
+        { key: "fee", label: "料金" },
+        { key: "available_period", label: "利用可能期間" },
+        { key: "checkin_checkout", label: "チェックイン/アウト" },
+        { key: "vehicle_size", label: "駐車可能車両サイズ" },
+        { key: "features", label: "設備" },
+      ],
     },
   },
   {
@@ -72,31 +93,4 @@ const LAYER_DEFS = [
       ],
     },
   },
-  {
-    id: "rvpark",
-    label: "RVパーク",
-    file: "../data/rvpark.geojson",
-    style: { color: "#ad1457", shape: "circle", size: 14 },
-    popup: {
-      name: "name",
-      address: ["address"],
-      url: "url",
-      extra: [
-        { key: "phone", label: "電話" },
-        { key: "fee", label: "料金" },
-        { key: "available_period", label: "利用可能期間" },
-        { key: "checkin_checkout", label: "チェックイン/アウト" },
-        { key: "vehicle_size", label: "駐車可能車両サイズ" },
-        { key: "features", label: "設備" },
-      ],
-    },
-  },
-];
-
-// 形の選択肢(設定パネルのプルダウンで使用)
-const SHAPE_OPTIONS = [
-  { value: "circle", label: "丸" },
-  { value: "square", label: "四角" },
-  { value: "triangle", label: "三角" },
-  { value: "diamond", label: "ひし形" },
 ];
